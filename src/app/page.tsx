@@ -1,9 +1,10 @@
-import React from 'react'
+import React from "react";
+import { Services } from "@/components";
 
 export default function Page() {
   return (
     <main>
-      Home page
-      </main>
-  )
+      <Services />
+    </main>
+  );
 }

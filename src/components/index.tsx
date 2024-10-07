@@ -3,5 +3,9 @@ import Footer from "./Footer";
 import Services from "./Services";
 import Testimonials from "./Testimonials";
 import Achievments from "./Achievments";
+import Activities from "./Activities";
+import Downloads from "./Downloads";
+import News from "./News";
+import Notices from "./Notices";
 
-export {Header,Footer,Services,Testimonials,Achievments}
+export {Header,Footer,Services,Testimonials,Achievments,Activities,Downloads,News,Notices}

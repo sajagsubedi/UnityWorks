@@ -1,11 +1,12 @@
 import React from "react";
-import { Services,Testimonials } from "@/components";
+import { Services,Testimonials,Achievments } from "@/components";
 
 export default function Page() {
   return (
     <main>
       <Services />
       <Testimonials/>
+      <Achievments/>
     </main>
   );
 }

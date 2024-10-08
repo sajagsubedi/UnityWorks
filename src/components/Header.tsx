@@ -41,6 +41,9 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
   const handleCareerDropDown = () => {
     setCareerDropDownPhone((e) => !e);
   };
+  useEffect(()=>{
+    closeDropDown()
+  },[pathname])
   return (
     <ul
       className={`flex flex-col font-medium  md:flex-row md:space-x-8  md:p-0 md:border-0 bg-gray-900 md:bg-transparent  h-full box-border md:justify-between gap-2`}

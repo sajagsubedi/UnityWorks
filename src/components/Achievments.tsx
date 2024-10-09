@@ -10,7 +10,7 @@ export default function Achievements() {
         <div className=" w-full mb-6 lg:mb-0 flex flex-col items-center">
           <div className="h-1 w-20 bg-green-500 rounded"></div>
           <h2 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900 ">
-            Achievements
+            ACHIEVMENTS
           </h2>
         </div>
         <div className="flex flex-wrap -m-4 text-center">

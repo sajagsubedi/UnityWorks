@@ -1,9 +1,10 @@
 import React from "react";
-import { Services, Testimonials, Achievments, Activities } from "@/components";
+import { AboutUs,Services, Testimonials, Achievments, Activities } from "@/components";
 
 export default function Page() {
   return (
     <main>
+      <AboutUs/>
       <Services />
       <Activities />
       <Testimonials />

@@ -46,7 +46,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
   },[pathname])
   return (
     <ul
-      className={`flex flex-col font-medium  md:flex-row md:space-x-8  md:p-0 md:border-0 bg-gray-900 md:bg-transparent  h-full box-border md:justify-between gap-2`}
+      className={`flex flex-col font-medium  md:flex-row md:space-x-2  md:p-0 md:border-0 bg-gray-900 md:bg-transparent  h-full box-border md:justify-between gap-2`}
     >
       <li>
         <Link
@@ -70,7 +70,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
           } md:p-0`}
         >
           <Link className="w-[50%] md:w-auto flex justify-end" href="/about-us">
-            <span className="transform translate-x-[50%] md:translate-x-0">
+            <span className="transform translate-x-[50%] md:translate-x-0 text-nowrap">
               ABOUT US
             </span>
           </Link>
@@ -217,7 +217,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             pathname !== "/contact"
               ? "text-gray-500 border-b md:text-black border-gray-600 md:border-0  hover:bg-green-500 hover:text-white"
               : "text-white bg-green-500 hover:bg-green-700 md:text-green-600"
-          } md:p-0`}
+          } md:p-0 text-nowrap`}
         >
           CONTACT US
         </Link>

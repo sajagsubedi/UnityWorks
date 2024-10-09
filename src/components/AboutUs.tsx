@@ -11,7 +11,7 @@ export default function AboutUs() {
         </h2>
       </div>
       <div className="flex flex-col items-center">
-        <h1 className="text-center font-semibold text-3xl text-green-500 mt-8 mb-4">
+        <h1 className="text-center font-semibold text-3xl text-green-500 mt-4 mb-4">
           UnityWorks: Fostering Sustainable Community Growth
         </h1>
         <p className="text-justify">

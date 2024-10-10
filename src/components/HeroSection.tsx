@@ -11,18 +11,13 @@ export default function Hero() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setBanner((p) => {
-        let addV = p + 1;
-        console.log("added value is", addV);
-        console.log("banner value is");
+        const addV = p + 1;
         return addV % 3;
       });
     }, 7000);
-
     return () => clearInterval(intervalId);
   }, []);
-  useEffect(() => {
-    console.log(banner);
-  }, [banner]);
+  
   return (
     <section className="w-full max-h-[calc(100vh-80px)]  relative overflow-hidden">
       <div

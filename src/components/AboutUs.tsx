@@ -3,15 +3,15 @@ import React from "react";
 
 export default function AboutUs() {
   return (
-    <section className="w-full px-[10vw] py-10">
-      <div className=" w-full mb-6 lg:mb-0 flex flex-col items-center">
+    <section className="w-full px-[10vw] py-10 mt-10">
+      <div className=" w-full lg:mb-0 flex flex-col items-center">
         <div className="h-1 w-20 bg-green-500 rounded"></div>
         <h2 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900 ">
           ABOUT US
         </h2>
       </div>
       <div className="flex flex-col items-center">
-        <h1 className="text-center font-semibold text-3xl text-green-500 mt-4 mb-4">
+        <h1 className="text-center font-semibold text-3xl text-green-500 mb-4">
           UnityWorks: Fostering Sustainable Community Growth
         </h1>
         <p className="text-justify">

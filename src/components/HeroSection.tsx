@@ -9,33 +9,42 @@ import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 export default function Hero() {
   const [banner, setBanner] = useState(0);
   useEffect(() => {
-    setInterval(() => {
+    const intervalId = setInterval(() => {
       setBanner((p) => {
-        return (p + 1) % 3;
+        let addV = p + 1;
+        console.log("added value is", addV);
+        console.log("banner value is");
+        return addV % 3;
       });
-    }, 10000);
+    }, 7000);
+
+    return () => clearInterval(intervalId);
   }, []);
+  useEffect(() => {
+    console.log(banner);
+  }, [banner]);
   return (
-    <section className="w-full max-h-[calc(100vh-80px)] overflow-hidden relative">
+    <section className="w-full max-h-[calc(100vh-80px)]  relative overflow-hidden">
       <div
-        className={`flex -translate-x-[${
+        className={`flex transform -translate-x-[${
           banner * 100
-        }%] transition-all ease-in-out delay-150`}
+        }%] transition-all`}
       >
         <Image
           className="min-w-full max-h-[calc(100vh-80px)] object-fill"
           alt="banner"
           src={banner1}
         />
-        <Image
-          className="min-w-full max-h-[calc(100vh-80px)] object-fill"
-          alt="banner"
-          src={banner3}
-        />
+
         <Image
           className="min-w-full max-h-[calc(100vh-80px)] object-fill"
           alt="banner"
           src={banner2}
+        />
+        <Image
+          className="min-w-full max-h-[calc(100vh-80px)] object-fill"
+          alt="banner"
+          src={banner3}
         />
       </div>
       <div className="absolute flex justify-between w-full top-[50%] px-2">

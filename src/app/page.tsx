@@ -6,12 +6,14 @@ import {
   Testimonials,
   Achievments,
   Activities,
+  Foundations
 } from "@/components";
 
 export default function Page() {
   return (
     <main>
       <Hero />
+      <Foundations/>
       <AboutUs />
       <Services />
       <Activities />

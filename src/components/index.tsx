@@ -9,5 +9,6 @@ import Downloads from "./Downloads";
 import News from "./News";
 import Notices from "./Notices";
 import AboutUs from "./AboutUs"
+import Foundations from "./Foundations"
 
-export {Header,Footer,Services,Testimonials,Achievments,Activities,Downloads,News,Notices,AboutUs,Hero}
+export {Header,Footer,Services,Testimonials,Achievments,Activities,Downloads,News,Notices,AboutUs,Hero,Foundations}

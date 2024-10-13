@@ -28,7 +28,7 @@ const foundations = [
 ];
 export default function Foundations() {
   return (
-    <section className="grid grid-cols-4 w-full bg-green-50 py-4 px-[10vw] gap-3">
+    <section className="grid  md:grid-cols-4 w-full bg-green-50 py-4 px-[10vw] gap-3 grid-cols-1">
       {foundations.map((foundation, i) => {
         return (
           <div className="flex p-3 text-gray-500 shadow rounded bg-white gap-2" key={i}>

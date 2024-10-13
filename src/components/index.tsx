@@ -11,5 +11,6 @@ import News from "./News";
 import Notices from "./Notices";
 import AboutUs from "./AboutUs"
 import Foundations from "./Foundations"
+import Enrollment from "./Enrollment"
 
-export {Header,TopBar, Footer,Services,Testimonials,Achievments,Activities,Downloads,News,Notices,AboutUs,Hero,Foundations}
+export {Header,TopBar, Footer,Services,Enrollment, Testimonials,Achievments,Activities,Downloads,News,Notices,AboutUs,Hero,Foundations}

@@ -1,4 +1,5 @@
 import Header from "./Header";
+import TopBar from "./TopBar";
 import Footer from "./Footer";
 import Hero from "./HeroSection";
 import Services from "./Services";
@@ -11,4 +12,4 @@ import Notices from "./Notices";
 import AboutUs from "./AboutUs"
 import Foundations from "./Foundations"
 
-export {Header,Footer,Services,Testimonials,Achievments,Activities,Downloads,News,Notices,AboutUs,Hero,Foundations}
+export {Header,TopBar, Footer,Services,Testimonials,Achievments,Activities,Downloads,News,Notices,AboutUs,Hero,Foundations}

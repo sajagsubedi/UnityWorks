@@ -9,8 +9,25 @@ import Activities from "./Activities";
 import Downloads from "./Downloads";
 import News from "./News";
 import Notices from "./Notices";
-import AboutUs from "./AboutUs"
-import Foundations from "./Foundations"
-import Enrollment from "./Enrollment"
+import AboutUs from "./AboutUs";
+import Foundations from "./Foundations";
+import Enrollment from "./Enrollment";
+import NewSolutions from "./NewSolutions";
 
-export {Header,TopBar, Footer,Services,Enrollment, Testimonials,Achievments,Activities,Downloads,News,Notices,AboutUs,Hero,Foundations}
+export {
+  Header,
+  TopBar,
+  Footer,
+  Services,
+  Enrollment,
+  NewSolutions,
+  Testimonials,
+  Achievments,
+  Activities,
+  Downloads,
+  News,
+  Notices,
+  AboutUs,
+  Hero,
+  Foundations,
+};

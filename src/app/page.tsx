@@ -7,7 +7,8 @@ import {
   Achievments,
   Activities,
   Foundations,
-  Enrollment
+  Enrollment,
+  NewSolutions
 } from "@/components";
 
 export default function Page() {
@@ -18,6 +19,7 @@ export default function Page() {
       <AboutUs />
       <Services />
       <Enrollment/>
+      <NewSolutions/>
       <Activities />
       <Testimonials />
       <Achievments />

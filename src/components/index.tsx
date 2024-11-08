@@ -13,6 +13,7 @@ import AboutUs from "./AboutUs";
 import Foundations from "./Foundations";
 import Enrollment from "./Enrollment";
 import NewSolutions from "./NewSolutions";
+import Affiliations from "./Affiliations";
 
 export {
   Header,
@@ -30,4 +31,5 @@ export {
   AboutUs,
   Hero,
   Foundations,
+  Affiliations,
 };

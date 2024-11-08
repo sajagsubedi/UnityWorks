@@ -44,7 +44,7 @@ export default function Services() {
       <div className="mx-auto px-4 sm:px-6 lg:px-8 relative z-1">
       <div className=" w-full  flex flex-col items-center mb-10">
           <div className="h-1 w-20 bg-green-500 rounded"></div>
-          <h2 className="sm:text-3xl text-2xl font-medium title-font text-gray-900 text-center">
+          <h2 className="sm:text-3xl text-2xl font-bold title-font text-gray-700 text-center">
             OUR PRODUCTS AND SERVICES
           </h2>
         </div>

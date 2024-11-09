@@ -48,8 +48,8 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="w-full px-[10vw] py-10 relative">
-      <div className="mx-auto px-4 sm:px-6 lg:px-8 relative z-1">
+    <section className="w-full md:px-[15vw] px-[10vw] py-10 relative">
+      <div className="mx-auto  relative z-1">
         <div className=" w-full  flex flex-col items-center mb-10">
           <div className="h-1 w-20 bg-green-500 rounded"></div>
           <h2 className="sm:text-3xl text-2xl font-bold title-font text-gray-700 text-center">

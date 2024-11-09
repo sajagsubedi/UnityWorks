@@ -24,7 +24,7 @@ const testimonials: Testimonial[] = [
     image:
       "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
     content:
-      "Working with Unity Works Cooperative has been an eye-opening experience. Their unwavering commitment to nurturing talent and fostering an inclusive, collaborative environment makes it a truly unique space. I felt valued from day one, with the team constantly encouraging me to contribute my ideas and grow alongside the projects. The guidance and mentorship I received helped me develop new skills and increased my confidence in my work. Unity Works Cooperative is more than just a cooperative—it's a vibrant community that empowers individuals to make a positive impact. I wholeheartedly recommend joining them to anyone seeking growth, support, and meaningful work.",
+      "Working with Unity Works Cooperative has been an eye-opening experience. Their unwavering commitment to nurturing talent and fostering an inclusive, collaborative environment makes it a truly unique space. The guidance and mentorship I received helped me develop new skills and increased my confidence in my work. Unity Works Cooperative is more than just a cooperative—it's a vibrant community that empowers individuals to make a positive impact. I wholeheartedly recommend joining them to anyone seeking growth, support, and meaningful work.",
   },
 ];
 
@@ -42,18 +42,18 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <div className="py-12 px-4 md:px-6 lg:px-8 bg-gray-100 max-w-[100vw] overflow-hidden">
+    <div className="py-12 md:px-[15vw] px-[10vw] bg-gray-100 max-w-[100vw] overflow-hidden">
       <div className=" w-full flex flex-col items-center z-2 relative mb-8">
         <div className="h-1 w-20 bg-green-500 rounded"></div>
         <h2 className="sm:text-3xl text-2xl font-bold title-font mb-2 text-gray-700 ">
           TESTIMONIALS
         </h2>
       </div>
-      <div className="relative max-w-4xl mx-auto">
+      <div className="relative w-full mx-auto md:h-96 max-h-[670px]">
         <div className="absolute bg-green-500  rounded-full p-4 md:-top-10 -top-7 left-1/2 transform -translate-x-1/2">
           <FaQuoteRight className="w-7 h-7 text-white md:w-12 md:h-12" />
         </div>
-        <div className="bg-green-100 p-8 rounded-lg shadow-lg flex pt-10">
+        <div className="bg-green-100 pb-8 px-6 rounded-lg shadow-lg flex pt-10">
           <div className="w-full h-full hidden md:block">
             <img
               src={testimonials[currentIndex].image}

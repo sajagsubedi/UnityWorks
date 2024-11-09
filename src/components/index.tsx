@@ -14,6 +14,7 @@ import Foundations from "./Foundations";
 import Enrollment from "./Enrollment";
 import NewSolutions from "./NewSolutions";
 import Affiliations from "./Affiliations";
+import Teams from "./Teams";
 
 export {
   Header,
@@ -32,4 +33,5 @@ export {
   Hero,
   Foundations,
   Affiliations,
+  Teams
 };

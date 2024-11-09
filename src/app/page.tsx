@@ -9,21 +9,32 @@ import {
   Foundations,
   Enrollment,
   NewSolutions,
-  Affiliations
+  Affiliations,
+  Teams,
 } from "@/components";
+import teamsBg from "@/assets/teamsbackground.jpg";
+import Image from "next/image";
 
 export default function Page() {
   return (
     <main>
       <Hero />
-      <Foundations/>
+      <Foundations />
       <AboutUs />
       <Services />
-      <Enrollment/>
-      <NewSolutions/>
+      <Enrollment />
+      <NewSolutions />
       <Activities />
       <Affiliations />
-      <Testimonials />
+      <div className="relative">
+        <Image
+          alt="banner"
+          src={teamsBg}
+          className="absolute h-full w-full object-cover md:object-fill left-0 top-0 -z-1"
+        />
+        <Teams />
+        <Testimonials />
+      </div>
       <Achievments />
     </main>
   );

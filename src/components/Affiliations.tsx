@@ -5,7 +5,7 @@ import { AffiliationsImages } from "@/constants/Affiliations";
 
 export default function Affiliations() {
   return (
-    <section className="px-[10vw] relative w-full min-h-48 py-10 md:py-14">
+    <section className="md:px-[15vw] px-[10vw] relative w-full min-h-48 py-10 md:py-14">
       <Image
         alt="banner"
         src={bgImage}

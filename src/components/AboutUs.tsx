@@ -3,7 +3,7 @@ import React from "react";
 
 export default function AboutUs() {
   return (
-    <section className="w-full px-[10vw] py-10 md:mt-10 mt-5">
+    <section className="w-full md:px-[15vw] px-[10vw] py-10 md:mt-10 mt-5">
       <div className=" w-full lg:mb-0 flex flex-col items-center">
         <div className="h-1 w-20 bg-green-500 rounded"></div>
         <h2 className="sm:text-3xl text-2xl font-bold title-font mb-2 text-gray-700 ">

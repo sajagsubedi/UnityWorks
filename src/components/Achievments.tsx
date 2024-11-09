@@ -5,9 +5,9 @@ import { GiReceiveMoney } from "react-icons/gi";
 
 export default function Achievements() {
   return (
-    <section className="text-gray-600 body-font">
-      <div className="container px-5 py-24 mx-auto">
-        <div className=" w-full mb-6 lg:mb-0 flex flex-col items-center">
+    <section className="text-gray-600 body-font md:px-[15vw] px-[10vw]">
+      <div className="container  py-24 mx-auto">
+        <div className=" w-full mb-8 flex flex-col items-center">
           <div className="h-1 w-20 bg-green-500 rounded"></div>
           <h2 className="sm:text-3xl text-2xl font-bold title-font mb-2 text-gray-700 ">
             ACHIEVMENTS

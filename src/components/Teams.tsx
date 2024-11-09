@@ -1,5 +1,4 @@
 import React from "react";
-import bgImage from "@/assets/bgaffiliationssection.jpg";
 import Image from "next/image";
 import { teams } from "@/constants/Teams";
 

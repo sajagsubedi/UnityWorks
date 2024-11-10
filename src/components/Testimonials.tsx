@@ -4,7 +4,7 @@ import React from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { FaChevronRight, FaChevronLeft, FaQuoteRight } from "react-icons/fa";
 import Autoplay from 'embla-carousel-autoplay'
-import { testimonials } from "@/constants/Testimonials.tsx";
+import { testimonials } from "@/constants/Testimonials";
 
 export default function Testimonials() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true },[Autoplay({delay:8000})]);

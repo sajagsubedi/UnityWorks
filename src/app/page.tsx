@@ -30,7 +30,7 @@ export default function Page() {
         <Image
           alt="banner"
           src={teamsBg}
-          className="absolute h-full w-full object-cover md:object-fill left-0 top-0 -z-1"
+          className="absolute h-full w-full object-cover md:object-fill left-0 top-0 -z-20"
         />
         <Teams />
         <Testimonials />

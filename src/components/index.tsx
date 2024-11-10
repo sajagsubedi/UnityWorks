@@ -33,5 +33,5 @@ export {
   Hero,
   Foundations,
   Affiliations,
-  Teams
+  Teams,
 };

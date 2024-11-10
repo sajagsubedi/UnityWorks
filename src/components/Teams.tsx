@@ -11,7 +11,7 @@ export default function Teams() {
           OUR TEAMS
         </h2>
       </div>
-      <div className="flex gap-5 justify-around flex-col md:flex-row">
+      <div className="flex gap-5 justify-between flex-col md:flex-row">
         {teams.map((team,index) => {
           return (
             <div className="relative flex flex-col items-center" key={index}>

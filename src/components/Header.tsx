@@ -46,7 +46,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
   },[pathname])
   return (
     <ul
-      className={`flex flex-col font-medium  md:flex-row md:space-x-2  md:p-0 md:border-0 bg-gray-900 md:bg-transparent  h-full box-border md:justify-between gap-2`}
+      className={`flex flex-col font-medium  md:flex-row md:space-x-2  md:p-0 md:border-0 bg-gray-900 md:bg-transparent  h-full box-border md:justify-between`}
     >
       <li>
         <Link
@@ -55,7 +55,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             pathname !== "/"
               ? "text-gray-500 border-b md:text-black border-gray-600 md:border-0  hover:bg-green-500 hover:text-white"
               : "text-white bg-green-500 hover:bg-green-700 md:text-green-600"
-          } md:p-0`}
+          } md:p-0 text-base  font-normal`}
         >
           HOME
         </Link>
@@ -70,7 +70,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
           } md:p-0`}
         >
           <Link className="w-[50%] md:w-auto flex justify-end" href="/about-us">
-            <span className="transform translate-x-[50%] md:translate-x-0 text-nowrap">
+            <span className="transform translate-x-[50%] md:translate-x-0 text-nowrap text-base  font-normal ">
               ABOUT US
             </span>
           </Link>
@@ -80,14 +80,14 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
         </span>
         <div
           className={`md:absolute w-full  bg-gray-800 md:bg-white border-md:top-10 h-0 overflow-hidden md:w-72 rounded md:shadow-lg md:shadow-gray-300 transition-all ${
-            aboutDropdown ? "md:h-52" : ""
+            aboutDropdown ? "md:h-48" : ""
           } ${aboutDropDownPhone ? "h-52" : ""}`}
         >
-          <ul className="w-full flex flex-col pl-2 gap-2 pt-4 md:border-t-2 md:border-green-500 justify-between h-full">
+          <ul className="w-full flex flex-col p-3 gap-1 md:border-t-2 md:border-green-500 justify-between h-full">
             <li className="border-b border-gray-500 w-full text-center md:text-left md:border-b-0 ">
               <Link
                 href="/about-us"
-                className="text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
+                className="text-sm text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
               >
                 BRIEF INTRODUCTION
               </Link>
@@ -95,7 +95,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             <li className="border-b border-gray-500 w-full text-center md:text-left md:border-b-0">
               <Link
                 href="/about-us"
-                className="text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
+                className="text-sm text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
               >
                 MESSAGE FROM CHAIRPERSON
               </Link>
@@ -103,15 +103,15 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             <li className="border-b border-gray-500 w-full text-center md:text-left md:border-b-0">
               <Link
                 href="/about-us"
-                className="text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
+                className="text-sm text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
               >
                 COMMITMENT FROM THE CEO
               </Link>
             </li>
-            <li className="border-b border-gray-500 w-futext-center md:text-left text-center md:border-b-0">
+            <li className="border-b border-gray-500 w-full text-center md:text-left md:border-b-0">
               <Link
                 href="/about-us"
-                className="text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
+                className="text-sm text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
               >
                 BOARD OF DIRECTORS
               </Link>
@@ -119,7 +119,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             <li className="border-b border-gray-500 w-full text-center md:text-left md:border-b-0">
               <Link
                 href="/about-us"
-                className="text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
+                className="text-sm text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
               >
                 EMPLOYEES
               </Link>
@@ -137,7 +137,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
           } md:p-0`}
         >
           <Link className="w-[50%] md:w-auto flex justify-end" href="/about-us">
-            <span className="transform translate-x-[50%] md:translate-x-0">
+            <span className="transform translate-x-[50%] md:translate-x-0 text-base  font-normal ">
               CAREER
             </span>
           </Link>
@@ -147,14 +147,14 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
         </span>
         <div
           className={`md:absolute w-full  bg-gray-800 md:bg-white border-md:top-10 h-0 overflow-hidden md:w-72 rounded md:shadow-lg md:shadow-gray-300 transition-all ${
-            careerDropdown ? "md:h-44" : ""
+            careerDropdown ? "md:h-40" : ""
           } ${careerDropDownPhone ? "h-44" : ""}`}
         >
           <ul className="w-full flex flex-col pl-2 gap-2 pt-4 md:border-t-2 md:border-green-500 justify-between h-full">
             <li className="border-b border-gray-500 w-full text-center md:text-left md:border-b-0 ">
               <Link
                 href="/about-us"
-                className="text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
+                className="text-sm text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
               >
                 VACANCY NOTICE
               </Link>
@@ -162,7 +162,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             <li className="border-b border-gray-500 w-full text-center md:text-left md:border-b-0">
               <Link
                 href="/about-us"
-                className="text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
+                className="text-sm text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
               >
                 SHORTLISTING
                 </Link>
@@ -170,7 +170,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             <li className="border-b border-gray-500 w-full text-center md:text-left md:border-b-0">
               <Link
                 href="/about-us"
-                className="text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
+                className="text-sm text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
               >
                 SCREENING
               </Link>
@@ -178,7 +178,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             <li className="border-b border-gray-500 w-futext-center md:text-left text-center md:border-b-0">
               <Link
                 href="/about-us"
-                className="text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
+                className="text-sm text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
               >
                 SELECTION
               </Link>
@@ -193,7 +193,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             pathname !== "/career"
               ? "text-gray-500 border-b md:text-black border-gray-600 md:border-0  hover:bg-green-500 hover:text-white"
               : "text-white bg-green-500 hover:bg-green-700 md:text-green-600"
-          } md:p-0`}
+          } md:p-0 text-base  font-normal `}
         >
           GALLERY
           </Link>
@@ -205,7 +205,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             pathname !== "/career"
               ? "text-gray-500 border-b md:text-black border-gray-600 md:border-0  hover:bg-green-500 hover:text-white"
               : "text-white bg-green-500 hover:bg-green-700 md:text-green-600"
-          } md:p-0`}
+          } md:p-0 text-base  font-normal`}
         >
           BRANCH
           </Link>
@@ -217,7 +217,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             pathname !== "/contact"
               ? "text-gray-500 border-b md:text-black border-gray-600 md:border-0  hover:bg-green-500 hover:text-white"
               : "text-white bg-green-500 hover:bg-green-700 md:text-green-600"
-          } md:p-0 text-nowrap`}
+          } md:p-0 text-nowrap text-base  font-normal`}
         >
           CONTACT US
         </Link>
@@ -232,12 +232,12 @@ function Header() {
     setNavMenu(false);
   };
   return (
-    <nav className="bg-gray-50 px-0 py-1 box-border gap-4 sticky top-0  h-20 z-50 border-b-4 border-green-500">
+    <nav className="bg-gray-50 px-0 py-1 box-border gap-4 sticky top-0  h-20 z-50 border-b-4 border-green-500 md:px-[5vw]">
       <div className="w-full flex flex-wrap items-center justify-between mx-auto h-full ">
         <Link href="/" className="flex items-center h-full">
           <Image src={logo} alt="logo" className="h-12  w-auto" />
         </Link>
-        <div className="flex items-center md:order-2">
+        <div className="flex items-center md:hidden">
           <button
             type="button"
             className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden outline-none "
@@ -260,7 +260,7 @@ function Header() {
             </svg>
           </button>
         </div>
-        <div className="items-center justify-between flex w-full md:flex  md:order-1 relative  flex-col z-10 md:w-[70%] md:pl-10">
+        <div className="items-center justify-between  flex w-full md:flex  md:order-1 relative  flex-col z-10 md:w-[60%] md:pl-10">
           <div
             className={`  absolute w-full md:static  md:h-auto overflow-hidden box-border transition-all duration-300  shadow-2xl  md:shadow-none md:mt-0 ${
               navMenu ? "h-[100vh]" : "h-0"

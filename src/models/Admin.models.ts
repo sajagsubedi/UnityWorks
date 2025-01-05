@@ -2,9 +2,9 @@ import mongoose, { Document, Schema } from "mongoose";
 import jwt from "jsonwebtoken";
 
 export interface User extends Document {
-  name: String;
-  email: String;
-  password: String;
+  name: string;
+  email: string;
+  password: string;
   comparePassword(password: string): Promise<boolean>;
   generateToken(): string
 }

@@ -31,7 +31,8 @@ export const GET = async () => {
         },
         { status: 200 }
       );
-    } catch (error) {
+    } catch (err) {
+      console.error("Verification Error:", err);
       return NextResponse.json(
         { success: false, isAuthenticated: false, message: "Invalid token" },
         { status: 401 }

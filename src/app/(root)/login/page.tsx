@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { CiMail } from "react-icons/ci";
 import { IoLockClosedOutline } from "react-icons/io5";
 import { CiLogin } from "react-icons/ci";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
@@ -24,25 +24,29 @@ function Login() {
       setEmail("");
       setPassword("");
       router.push("/dashboard");
-    } catch (err: any) {
-      console.log(err);
-      toast.error(err.response.data.message);
+    } catch (error) {
+      const err = error as AxiosError<{ message: string }>;
+      toast.error(err.response?.data.message);
     }
   };
 
-  const verifyAuth = async () => {
+  const verifyAuth = useCallback(async () => {
     try {
       const response = await axios.get("/api/verifyAuthentication");
       if (response.data.isAuthenticated) {
         router.push("/dashboard");
       }
-    } catch (err: any) {
-      console.log(err.response.data.message);
+    } catch (error) {
+      const err = error as AxiosError<{ message: string ,isAuthenticated: boolean}>;
+      console.log(err.response?.data.message);
     }
-  };
+  }, [router]);
+
   useEffect(() => {
     verifyAuth();
-  }, []);
+  }, [verifyAuth]);
+
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100 justify-center flex pt-5">
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-8 h-max">

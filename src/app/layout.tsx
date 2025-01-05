@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { TopBar, Header, Footer } from "@/components";
+import { ToastContainer } from "react-toastify"; 
 
 export const metadata: Metadata = {
   title: "UnityWorks: Empowering Communities for Sustainable Growth",
@@ -18,10 +18,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <TopBar />
-        <Header />
+      <ToastContainer
+            position="top-left"
+            autoClose={3000}
+            style={{ width: "230px" }}
+          />
         {children}
-        <Footer />
       </body>
     </html>
   );

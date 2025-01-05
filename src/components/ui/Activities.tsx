@@ -1,5 +1,5 @@
 "use client";
-import { News, Notices, Downloads } from "./index";
+import { News, Notices, Downloads } from "@/components";
 import { useState } from "react";
 
 export default function Activities() {

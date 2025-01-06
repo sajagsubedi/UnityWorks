@@ -82,3 +82,41 @@ export const PATCH = async (
     );
   }
 };
+
+// Route 3: to delete news by ID
+export const DELETE = async (
+  request: Request,
+  { params }: { params: Promise<{ id: string }> }
+) => {
+  await connectDb();
+  try {
+    const { id } = await params;
+
+    if (mongoose.Types.ObjectId.isValid(id) === false) {
+      return NextResponse.json(
+        { success: false, message: "Invalid news ID" },
+        { status: 400 }
+      );
+    }
+
+    const news = await News.findOneAndDelete({ _id: id });
+
+    if (!news) {
+      return NextResponse.json(
+        { success: false, message: "News not found" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(
+      { success: true, message: "News deleted successfully!" },
+      { status: 200 }
+    );
+  } catch (err) {
+    console.error("Error deleting news:", err);
+    return NextResponse.json(
+      { success: false, message: "Something went wrong. Please try again." },
+      { status: 500 }
+    );
+  }
+};

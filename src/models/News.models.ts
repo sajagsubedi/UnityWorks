@@ -12,8 +12,9 @@ export interface News extends Document {
     url: string;
     public_id: string;
   };
-  date: Date;
   visibility: Visibility;
+  createdAt: Date;
+  updatedAt: Date;
 }
 export const newsSchema: Schema<News> = new Schema({
   title: {
@@ -34,16 +35,13 @@ export const newsSchema: Schema<News> = new Schema({
       required: true,
     },
   },
-  date: {
-    type: Date,
-    required: true,
-    default: Date.now,
-  },
   visibility: {
     type: String,
     required: true,
     enum: Object.values(Visibility),
   },
+},{
+  timestamps: true
 });
 
 export default (mongoose.models.News as mongoose.Model<News>) ||

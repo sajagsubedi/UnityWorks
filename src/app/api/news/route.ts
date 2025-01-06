@@ -1,7 +1,8 @@
-import News from "@/models/News.models";
+import News, { Visibility } from "@/models/News.models";
 import connectDb from "@/lib/connectDb";
 import { NextResponse } from "next/server";
 
+// Route 1: to fetch news with pagination
 export const GET = async (request: Request) => {
   await connectDb();
   try {
@@ -13,7 +14,10 @@ export const GET = async (request: Request) => {
     const skip = (page - 1) * limit;
 
     // Fetch news from the database with pagination and sorting by date
-    const news = await News.find().sort({ date: -1 }).skip(skip).limit(limit);
+    const news = await News.find({ visibility: Visibility.PUBLIC })
+      .sort({ date: -1 })
+      .skip(skip)
+      .limit(limit);
 
     return NextResponse.json({ success: true, news }, { status: 200 });
   } catch (err) {

@@ -4,7 +4,7 @@ export enum Visibility {
   PUBLIC = "public",
   PRIVATE = "private",
 }
-interface Image {
+export interface Image {
   url: string;
   public_id: string;
 }

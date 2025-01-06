@@ -2,6 +2,7 @@ import News, { Visibility } from "@/models/News.models";
 import connectDb from "@/lib/connectDb";
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
+import cloudinary from "@/lib/cloudinary";
 
 // Route 1: to fetch news by ID
 export const GET = async (
@@ -107,6 +108,10 @@ export const DELETE = async (
         { status: 404 }
       );
     }
+
+    //delete image from cloudinary
+    await cloudinary.uploader.destroy(news.image.public_id);
+
 
     return NextResponse.json(
       { success: true, message: "News deleted successfully!" },

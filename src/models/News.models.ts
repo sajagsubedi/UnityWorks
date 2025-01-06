@@ -8,7 +8,10 @@ export enum Visibility {
 export interface News extends Document {
   title: string;
   description: string;
-  image: string;
+  image: {
+    url: string;
+    public_id: string;
+  };
   date: Date;
   visibility: Visibility;
 }

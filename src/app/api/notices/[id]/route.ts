@@ -2,6 +2,12 @@ import Notice, { Visibility } from "@/models/News.models";
 import connectDb from "@/lib/connectDb";
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
+import { checkAuth } from "@/middlewares/checkAuth.middleware";
+
+interface dbQueryType {
+  _id?: string;
+  visibility?: Visibility;
+}
 
 // Route 1: to fetch notice by ID
 export const GET = async (
@@ -18,19 +24,23 @@ export const GET = async (
         { status: 400 }
       );
     }
-    const notices = await Notice.findOne({
+    const dbQuery: dbQueryType = {
       _id: id,
-      visibility: Visibility.PUBLIC,
-    });
+    };
+    const auth = await checkAuth(); //checking auth
+    if (!auth || !auth.isAuthenticated) {
+      dbQuery["visibility"] = Visibility.PUBLIC; // Fetch public news only if not authenticated
+    }
+    const notice = await Notice.findOne(dbQuery);
 
-    if (!notices) {
+    if (!notice) {
       return NextResponse.json(
         { success: false, message: "Notices not found" },
         { status: 404 }
       );
     }
 
-    return NextResponse.json({ success: true, notices }, { status: 200 });
+    return NextResponse.json({ success: true, notice }, { status: 200 });
   } catch (err) {
     console.error("Error fetching news:", err);
     return NextResponse.json(

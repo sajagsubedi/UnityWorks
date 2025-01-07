@@ -2,6 +2,12 @@ import News, { Visibility } from "@/models/News.models";
 import connectDb from "@/lib/connectDb";
 import { NextResponse } from "next/server";
 import cloudinary from "@/lib/cloudinary";
+import { checkAuth } from "@/middlewares/checkAuth.middleware";
+
+interface dbQueryType {
+  _id?: string;
+  visibility?: Visibility;
+}
 
 // Define the Cloudinary upload result interface
 interface CloudinaryUploadResult {
@@ -13,6 +19,7 @@ interface CloudinaryUploadResult {
 export const GET = async (request: Request) => {
   await connectDb();
   try {
+    //checking auth
     const { searchParams } = new URL(request.url);
     const limit = parseInt(searchParams.get("limit") || "10", 10); // Default to 10 if not provided
     const page = parseInt(searchParams.get("page") || "1", 10); // Default to page 1 if not provided
@@ -20,8 +27,14 @@ export const GET = async (request: Request) => {
     // Pagination logic
     const skip = (page - 1) * limit;
 
+    const dbQuery: dbQueryType = {};
+    const auth = await checkAuth(); //checking auth
+    if (!auth || !auth.isAuthenticated) {
+      dbQuery["visibility"] = Visibility.PUBLIC; // Fetch public news only if not authenticated
+    }
+
     // Fetch news from the database with pagination and sorting by date
-    const news = await News.find({ visibility: Visibility.PUBLIC })
+    const news = await News.find(dbQuery)
       .sort({ date: -1 })
       .skip(skip)
       .limit(limit);
@@ -43,6 +56,14 @@ export const GET = async (request: Request) => {
 export const POST = async (request: Request) => {
   await connectDb();
   try {
+    const auth = await checkAuth(); //checking auth
+    if (!auth || !auth.isAuthenticated) {
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
     // upload image to cloudinary
     const formData = await request.formData();
     const file = formData.get("image") as File | null;

@@ -3,6 +3,12 @@ import connectDb from "@/lib/connectDb";
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 import cloudinary from "@/lib/cloudinary";
+import { checkAuth } from "@/middlewares/checkAuth.middleware";
+
+interface dbQueryType {
+  _id?: string;
+  visibility?: Visibility;
+}
 
 // Route 1: to fetch news by ID
 export const GET = async (
@@ -19,10 +25,16 @@ export const GET = async (
         { status: 400 }
       );
     }
-    const news = await News.findOne({
+    const dbQuery: dbQueryType = {
       _id: id,
-      visibility: Visibility.PUBLIC,
-    });
+    };
+
+    const auth = await checkAuth(); //checking auth
+    if (!auth || !auth.isAuthenticated) {
+      dbQuery["visibility"] = Visibility.PUBLIC; // Fetch public news only if not authenticated
+    }
+
+    const news = await News.findOne(dbQuery);
 
     if (!news) {
       return NextResponse.json(
@@ -48,6 +60,13 @@ export const PATCH = async (
 ) => {
   await connectDb();
   try {
+    const auth = await checkAuth(); //checking auth
+    if (!auth || !auth.isAuthenticated) {
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 }
+      );
+    }
     const { id } = await params;
     const { title, content, visibility } = await request.json();
 
@@ -91,6 +110,13 @@ export const DELETE = async (
 ) => {
   await connectDb();
   try {
+    const auth = await checkAuth(); //checking auth
+    if (!auth || !auth.isAuthenticated) {
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 }
+      );
+    }
     const { id } = await params;
 
     if (mongoose.Types.ObjectId.isValid(id) === false) {
@@ -111,7 +137,6 @@ export const DELETE = async (
 
     //delete image from cloudinary
     await cloudinary.uploader.destroy(news.image.public_id);
-
 
     return NextResponse.json(
       { success: true, message: "News deleted successfully!" },

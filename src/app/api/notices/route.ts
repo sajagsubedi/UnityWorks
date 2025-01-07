@@ -3,6 +3,12 @@ import connectDb from "@/lib/connectDb";
 import { NextResponse } from "next/server";
 import cloudinary from "@/lib/cloudinary";
 import { Image } from "@/models/Notice.model";
+import { checkAuth } from "@/middlewares/checkAuth.middleware";
+
+interface dbQueryType {
+  _id?: string;
+  visibility?: Visibility;
+}
 // Define the Cloudinary upload result interface
 interface CloudinaryUploadResult {
   public_id: string;
@@ -19,7 +25,13 @@ export const GET = async (request: Request) => {
 
     const skip = (page - 1) * limit;
 
-    const notices = await Notice.find({ visibility: Visibility.PUBLIC })
+    const dbQuery: dbQueryType = {};
+    const auth = await checkAuth(); //checking auth
+    if (!auth || !auth.isAuthenticated) {
+      dbQuery["visibility"] = Visibility.PUBLIC; // Fetch public news only if not authenticated
+    }
+
+    const notices = await Notice.find(dbQuery)
       .sort({ date: -1 })
       .skip(skip)
       .limit(limit);
@@ -41,6 +53,13 @@ export const GET = async (request: Request) => {
 export const POST = async (request: Request) => {
   await connectDb();
   try {
+    const auth = await checkAuth(); //checking auth
+    if (!auth || !auth.isAuthenticated) {
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 }
+      );
+    }
     // upload image to cloudinary
     const formData = await request.formData();
     const files = formData.getAll("images") as File[] | null;

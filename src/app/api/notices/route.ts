@@ -9,11 +9,6 @@ interface dbQueryType {
   _id?: string;
   visibility?: Visibility;
 }
-// Define the Cloudinary upload result interface
-interface CloudinaryUploadResult {
-  public_id: string;
-  [key: string]: any;
-}
 
 // Route 1: to fetch Notices with pagination
 export const GET = async (request: Request) => {

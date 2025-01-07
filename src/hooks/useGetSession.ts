@@ -29,7 +29,7 @@ export const useGetSession = () => {
           router.push('/login'); 
         }
       } catch (err) {
-        console.error("Error fetching session:", err);
+        console.log("Error fetching session:", err);
         router.push('/login'); 
       } finally {
         setLoading(false); 

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { NewsCard } from "@/components";
 import { NewsItem } from "@/models/News.models";
+import { RiLoader2Fill } from "react-icons/ri";
 
 const Page = () => {
   const [items, setItems] = useState<NewsItem[]>([]);
@@ -33,10 +34,12 @@ const Page = () => {
           Add News
         </button>
       </div>
+      {loading && (
+          <RiLoader2Fill className="animate-spin text-3xl absolute left-[50%] top-[50%]" />
+      )}
       <div className="space-y-6 mt-5">
-        {items.map((item) => (
-          <NewsCard key={item.id} item={item} />
-        ))}
+        {!loading &&
+          items.map((item) => <NewsCard key={item.id} item={item} />)}
       </div>
     </div>
   );

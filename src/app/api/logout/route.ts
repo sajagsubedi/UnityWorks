@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
-export const POST = async (request: Request) => {
+export const POST = async () => {
   try {
     cookies().delete("Authorization");
     return NextResponse.json(

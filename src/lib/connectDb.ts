@@ -7,8 +7,6 @@ type connectionObject = {
 const connection: connectionObject = {};
 
 const connectDb = async () :Promise<void>=> {
-
-
   try {
   if (connection.isConnected) {
     console.log("Already connected to MongoDB")

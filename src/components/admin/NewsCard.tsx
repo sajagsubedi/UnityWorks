@@ -2,7 +2,7 @@
 
 import React from "react";
 import { FaRegCalendar } from "react-icons/fa";
-import { NewsItem } from "@/models/News.models";
+import { NewsItem, Visibility } from "@/models/News.models";
 import Link from "next/link";
 
 interface NewsCardProps {
@@ -14,6 +14,7 @@ const dateOptions: Intl.DateTimeFormatOptions = {
   month: "short",
   day: "numeric",
 };
+
 const NewsCard = ({ item }: NewsCardProps) => {
   return (
     <div className="bg-white rounded-lg shadow-sm overflow-hidden">
@@ -48,7 +49,7 @@ const NewsCard = ({ item }: NewsCardProps) => {
               </h3>
               <span
                 className={`px-2 py-1 text-xs font-medium rounded uppercase ${
-                  item.visibility === "public"
+                  item.visibility === Visibility.PUBLIC
                     ? "bg-green-100 text-green-600"
                     : "bg-gray-100 text-gray-600"
                 }`}
@@ -62,7 +63,7 @@ const NewsCard = ({ item }: NewsCardProps) => {
 
             <Link
               className="text-green-500 text-sm w-max underline"
-              href={`admin\\news\\${item._id}`}
+              href={`/admin/news/${item._id}`}
             >
               Read More
             </Link>

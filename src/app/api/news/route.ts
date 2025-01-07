@@ -12,7 +12,7 @@ interface dbQueryType {
 // Define the Cloudinary upload result interface
 interface CloudinaryUploadResult {
   public_id: string;
-  [key: string]: any;
+  secure_url: string;
 }
 
 // Route 1: to fetch news with pagination

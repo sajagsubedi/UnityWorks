@@ -21,6 +21,7 @@ export const GET = async () => {
     try {
       const decoded = jwt.verify(token, TOKEN_SECRET) as JwtPayload & {
         _id: string;
+        name: string;
       };
       
       return NextResponse.json(

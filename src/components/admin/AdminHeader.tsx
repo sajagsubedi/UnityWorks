@@ -1,11 +1,13 @@
 "use client";
 import React, { useState } from "react";
-import { IoMdNotifications } from "react-icons/io";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CiUser } from "react-icons/ci";
 import { IoIosLogOut } from "react-icons/io";
+import { toast } from "react-toastify";
+
+import axios, { AxiosError } from "axios";
 
 const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
   const pathname = usePathname();
@@ -56,10 +58,27 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
 export default function UserDashboard() {
   const [userDropDown, setUserDropDown] = useState(false);
   const [navMenu, setNavMenu] = useState(false);
+  const router = useRouter();
+
   const closeDropDown = () => {
     setNavMenu(false);
     setUserDropDown(false);
   };
+
+  const handleLogOut = () => {
+    axios
+      .post("/api/logout")
+      .then((res) => {
+        if (res.data.success) {
+          toast.success(res.data.message);
+          router.push("/login");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <nav className="bg-white shadow-sm shadow-gray-200 sticky top-0 z-50">
       <div className="w-full flex flex-wrap items-center justify-between mx-auto py-3">
@@ -80,11 +99,11 @@ export default function UserDashboard() {
               >
                 <CiUser className="text-gray-500 h-7 w-7" />
                 <h4 className="font-bold text-gray-600 text-base md:block hidden">
-                  Sajag Subedi
+                  Admin
                 </h4>
               </button>
             </div>
-            <button className="w-auto h-full">
+            <button className="w-auto h-full" onClick={handleLogOut}>
               <IoIosLogOut className="text-green-500 h-7 w-7" />
             </button>
           </div>

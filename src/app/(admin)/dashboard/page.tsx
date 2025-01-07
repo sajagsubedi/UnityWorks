@@ -1,9 +1,11 @@
-import React from 'react'
+"use client";
+
+import React from "react";
+import { useGetSession } from "@/hooks/useGetSession";
 
 const page = () => {
-  return (
-    <div>page</div>
-  )
-}
+  const { session, loading } = useGetSession();
+  return <div>page</div>;
+};
 
-export default page
+export default page;

@@ -18,7 +18,7 @@ export default function Testimonials() {
   }, [emblaApi]);
 
   return (
-    <div className="bg-transparent py-10 w-full md:px-[15vw]">
+    <div className="bg-transparent py-10 max-w-full md:px-[15vw] overflow-hidden">
       <div className="mx-auto max-w-7xl">
         <div className=" w-full flex flex-col items-center z-2 relative mb-10">
           <div className="h-1 w-20 bg-green-500 rounded"></div>
@@ -27,14 +27,14 @@ export default function Testimonials() {
           </h2>
         </div>
 
-        <div className="relative w-full mx-auto">
+        <div className="relative w-[90%] md:w-full mx-auto">
           <div className="absolute bg-green-500 rounded-full p-4 md:-top-10 -top-7 left-1/2 transform -translate-x-1/2">
             <FaQuoteRight className="w-7 h-7 text-white md:w-12 md:h-12" />
           </div>
           <div className="overflow-hidden relative -z-10" ref={emblaRef}>
             <div className="flex">
               {testimonials.map((testimonial,ind) => (
-                <div className="bg-green-100 pb-8 px-6 rounded-lg shadow-lg flex pt-10 flex-[0_0_100%] min-w-0 gap-3" key={ind}>
+                <div className="bg-gradient-to-b from-green-100 to-lime-100 pb-8 px-6 rounded-lg shadow-lg flex pt-10 flex-[0_0_100%] min-w-0 gap-3" key={ind}>
                   <div className=" min-h-24 min-w-24 hidden md:block">
                     <img
                       src={testimonial.image}
@@ -58,13 +58,13 @@ export default function Testimonials() {
               onClick={scrollPrev}
               className=" bg-white rounded-full p-2 shadow-md absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/2"
             >
-              <FaChevronLeft className="w-6 h-6 text-green-500" />
+              <FaChevronLeft className="w-5 h-5 text-green-500" />
             </button>
             <button
               onClick={scrollNext}
               className=" bg-white rounded-full p-2 shadow-md absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-1/2"
             >
-              <FaChevronRight className="w-6 h-6 text-green-500" />
+              <FaChevronRight className="w-5 h-5 text-green-500" />
             </button>
         </div>
       </div>

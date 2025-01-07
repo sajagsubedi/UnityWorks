@@ -37,11 +37,8 @@ export {
   Teams,
 };
 
-
-
 //admin components
 import AdminHeader from "./admin/AdminHeader";
+import NewsCard from "./admin/NewsCard";
 
-export { AdminHeader };
-
-
+export { AdminHeader, NewsCard };

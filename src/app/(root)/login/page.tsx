@@ -16,7 +16,7 @@ function Login() {
   const { session, loading } = useGetSession();
 
   if (session?.isAuthenticated && !loading) {
-    router.push("/dashboard");
+    router.push("/admin/dashboard");
   }
 
   const handleSubmit = async (e: React.FormEvent) => {

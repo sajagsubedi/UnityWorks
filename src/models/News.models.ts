@@ -5,7 +5,7 @@ export enum Visibility {
   PRIVATE = "private",
 }
 
-export interface News extends Document {
+export interface NewsItem extends Document {
   title: string;
   description: string;
   image: {
@@ -16,7 +16,8 @@ export interface News extends Document {
   createdAt: Date;
   updatedAt: Date;
 }
-export const newsSchema: Schema<News> = new Schema({
+
+export const newsSchema: Schema<NewsItem> = new Schema({
   title: {
     type: String,
     required: [true, "Title is required"],
@@ -44,5 +45,5 @@ export const newsSchema: Schema<News> = new Schema({
   timestamps: true
 });
 
-export default (mongoose.models.News as mongoose.Model<News>) ||
-  mongoose.model<News>("News", newsSchema);
+export default (mongoose.models.News as mongoose.Model<NewsItem>) ||
+  mongoose.model<NewsItem>("News", newsSchema);

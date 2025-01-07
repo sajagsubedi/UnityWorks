@@ -7,30 +7,30 @@ import { CiUser } from "react-icons/ci";
 import { IoIosLogOut } from "react-icons/io";
 import { toast } from "react-toastify";
 
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
   const pathname = usePathname();
   const navlinks = [
     {
       text: "Dashboard",
-      href: "/dashboard",
+      href: "/admin/dashboard",
     },
     {
       text: "News",
-      href: "/news",
+      href: "/admin/news",
     },
     {
       text: "Notices",
-      href: "/notices",
+      href: "/admin/notices",
     },
     {
       text: "Downloads",
-      href: "/downloads",
+      href: "/admin/downloads",
     },
     {
       text: "Reports",
-      href: "/reports",
+      href: "/admin/reports",
     },
   ];
   return (

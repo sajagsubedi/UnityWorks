@@ -29,7 +29,7 @@ function Login() {
       toast.success(response.data.message);
       setEmail("");
       setPassword("");
-      router.push("/dashboard");
+      router.push("/admin/dashboard");
     } catch (error) {
       const err = error as AxiosError<{ message: string }>;
       toast.error(err.response?.data.message);

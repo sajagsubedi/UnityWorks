@@ -5,7 +5,7 @@ import Footer from "./ui/Footer";
 import Hero from "./ui/HeroSection";
 import Services from "./ui/Services";
 import Testimonials from "./ui/Testimonials";
-import Achievments from "./ui/Achievments";
+import Achievements from "./ui/Achievements";
 import Activities from "./ui/Activities";
 import Downloads from "./ui/Downloads";
 import News from "./ui/News";
@@ -25,7 +25,7 @@ export {
   Enrollment,
   NewSolutions,
   Testimonials,
-  Achievments,
+  Achievements,
   Activities,
   Downloads,
   News,

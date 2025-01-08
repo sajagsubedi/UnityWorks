@@ -4,7 +4,7 @@ import {
   Hero,
   Services,
   Testimonials,
-  Achievments,
+  Achievements,
   Activities,
   Foundations,
   Enrollment,
@@ -35,7 +35,7 @@ export default function Page() {
         <Teams />
         <Testimonials />
       </div>
-      <Achievments />
+      <Achievements />
     </main>
   );
 }

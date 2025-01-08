@@ -47,7 +47,7 @@ export default function News() {
                   <img
                     src={item.image.url}
                     alt={item.title}
-                    className="h-40 md:w-40 w-full object-fill"
+                    className="h-40 md:w-40 md:min-w-40 md:max-w-40 w-full object-fill"
                   />
                   <div className="p-3 flex flex-col flex-grow ">
                     <div className="flex items-center justify-between">

@@ -63,7 +63,7 @@ const NewsCard = ({ item }: NewsCardProps) => {
 
             <Link
               className="text-green-500 text-sm w-max underline"
-              href={`admin/news/${item._id}`}
+              href={`/admin/news/${item._id}`}
             >
               Read More
             </Link>

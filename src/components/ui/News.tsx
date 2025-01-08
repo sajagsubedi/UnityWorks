@@ -20,7 +20,7 @@ export default function News() {
   const fetchNews = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("/api/news?limit=6");
+      const response = await axios.get("/api/news?limit=5&pagetype=landing");
       setNews(response.data.news);
     } catch (err) {
       const error = err as AxiosError;
@@ -34,7 +34,7 @@ export default function News() {
   }, []);
 
   return (
-    <div className=" py-10 max-w-[90vw] mx-auto">
+    <div className=" py-10 w-full max-w-[90vw] mx-auto">
       <div className="flex flex-col w-full gap-3 relative">
         {loading && (
           <RiLoader2Fill className="animate-spin text-3xl absolute left-[50%] top-[50%]" />
@@ -42,12 +42,12 @@ export default function News() {
         {!loading &&
           news.map((item, i) => {
             return (
-              <div className="rounded-lg border-b border-green-500 overflow-hidden md:max-h-44">
+              <div className="rounded-lg border-b border-green-500 w-full overflow-hidden md:max-h-44" key={i}>
                 <div className="flex flex-col md:flex-row">
                   <img
                     src={item.image.url}
                     alt={item.title}
-                    className="h-44 md:w-44 w-full object-fill bg-green-600"
+                    className="h-40 md:w-40 w-full object-fill"
                   />
                   <div className="p-3 flex flex-col flex-grow ">
                     <div className="flex items-center justify-between">
@@ -61,10 +61,10 @@ export default function News() {
                     </div>
                     <div className="flex flex-col h-full justify-between">
                       <div>
-                        <h3 className="text-xl font-bold text-green-500 line-clamp-2">
+                        <h3 className=" font-bold text-green-500 line-clamp-1">
                           {item.title}
                         </h3>
-                        <p className="text-gray-600 line-clamp-3 mt-1">
+                        <p className="text-gray-600 line-clamp-3 mt-1 text-sm">
                           {item.description}
                         </p>
                       </div>

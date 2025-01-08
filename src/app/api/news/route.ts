@@ -23,19 +23,28 @@ export const GET = async (request: Request) => {
     const { searchParams } = new URL(request.url);
     const limit = parseInt(searchParams.get("limit") || "10", 10); // Default to 10 if not provided
     const page = parseInt(searchParams.get("page") || "1", 10); // Default to page 1 if not provided
+    const pageType = searchParams.get("pagetype");
 
     // Pagination logic
     const skip = (page - 1) * limit;
 
     const dbQuery: dbQueryType = {};
     const auth = await checkAuth(); //checking auth
+
     if (!auth || !auth.isAuthenticated) {
       dbQuery["visibility"] = Visibility.PUBLIC; // Fetch public news only if not authenticated
     }
 
+    //setting visibility public for authenticated users but accessing through landing page
+    if (auth && auth.isAuthenticated) {
+      if (pageType == "landing") {
+        dbQuery["visibility"] = Visibility.PUBLIC; // Fetch public news only if auth user accessing through landing page
+      }
+    }
+
     // Fetch news from the database with pagination and sorting by date
     const news = await News.find(dbQuery)
-      .sort({ date: -1 })
+      .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit);
 

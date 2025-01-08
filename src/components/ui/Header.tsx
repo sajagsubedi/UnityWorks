@@ -86,7 +86,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
           <ul className="w-full flex flex-col p-3 gap-1 md:border-t-2 md:border-green-500 justify-between h-full">
             <li className="border-b border-gray-500 w-full text-center md:text-left md:border-b-0 ">
               <Link
-                href="/about-us"
+                href="/about-us/introduction"
                 className="text-sm text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
               >
                 BRIEF INTRODUCTION
@@ -94,7 +94,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             </li>
             <li className="border-b border-gray-500 w-full text-center md:text-left md:border-b-0">
               <Link
-                href="/about-us"
+                href="/about-us/message-from-chairperson"
                 className="text-sm text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
               >
                 MESSAGE FROM CHAIRPERSON
@@ -102,7 +102,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             </li>
             <li className="border-b border-gray-500 w-full text-center md:text-left md:border-b-0">
               <Link
-                href="/about-us"
+                href="/about-us/commitment-from-ceo"
                 className="text-sm text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
               >
                 COMMITMENT FROM THE CEO
@@ -110,7 +110,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             </li>
             <li className="border-b border-gray-500 w-full text-center md:text-left md:border-b-0">
               <Link
-                href="/about-us"
+                href="/about-us/bod"
                 className="text-sm text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
               >
                 BOARD OF DIRECTORS
@@ -118,7 +118,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             </li>
             <li className="border-b border-gray-500 w-full text-center md:text-left md:border-b-0">
               <Link
-                href="/about-us"
+                href="/about-us/our-employees"
                 className="text-sm text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
               >
                 EMPLOYEES

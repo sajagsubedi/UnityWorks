@@ -16,7 +16,7 @@ export default function Teams() {
           return (
             <div className="relative flex flex-col items-center" key={index}>
               <Image src={team.image} alt="logo" className="w-32 h-32 shadow" />
-              <h5 className="text-green-600 font-medium text-lg">{team.name}</h5>
+              <h3 className="text-green-600 font-medium text-lg">{team.name}</h3>
               <p className="text-gray-600 text-sm">{team.post}</p>
             </div>
           );

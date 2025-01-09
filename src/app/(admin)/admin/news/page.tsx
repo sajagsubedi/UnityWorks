@@ -1,17 +1,21 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { EditNewsModal, NewsCard } from "@/components";
+import axios, { AxiosError } from "axios";
+import { EditNewsModal, NewsCard, DeleteModal } from "@/components";
 import { NewsItem } from "@/models/News.models";
 import { RiLoader2Fill } from "react-icons/ri";
 import Link from "next/link";
-import { EditNewsModalState } from "@/types/ComponentTypes";
+import { EditNewsModalState, DeleteModalState } from "@/types/ComponentTypes";
+import { toast } from "react-toastify";
 
 const Page = () => {
   const [items, setItems] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [editModal, setEditModal] = useState<EditNewsModalState>({
+    isOpen: false,
+  });
+  const [deleteModal, setDeleteModal] = useState<DeleteModalState>({
     isOpen: false,
   });
 
@@ -39,11 +43,39 @@ const Page = () => {
     setEditModal({ isOpen: true, news });
   };
 
+  //function for delete modal
+  const openDeleteModal = (id: string) => {
+    setDeleteModal({ isOpen: true, id });
+  };
+  const closeDeleteModal = () => {
+    setDeleteModal({ isOpen: false });
+  };
+  const handleDeleteNews = async () => {
+    try {
+      const response = await axios.delete(`/api/news/${deleteModal.id}`);
+      console.log(response);
+      toast.success(response.data.message)
+      closeDeleteModal();
+      fetchNews();
+    } catch (err) {
+      const error = err as AxiosError;
+      console.error("Error deleting news:", error);
+      toast.error(error.message)
+    }
+  };
+
   return (
     <div className="min-h-screen px-[10vw] py-12 bg-green-50">
       <h2 className="font-bold text-3xl text-emerald-800 mb-6 text-center">
         News Management
       </h2>
+      {deleteModal.isOpen && deleteModal.id && (
+        <DeleteModal
+          onCancel={closeDeleteModal}
+          onConfirm={handleDeleteNews}
+          message="news item"
+        />
+      )}
       {editModal.isOpen && editModal.news && (
         <EditNewsModal
           news={editModal?.news}
@@ -64,8 +96,13 @@ const Page = () => {
       )}
       <div className="space-y-6 mt-5">
         {!loading &&
-          items.map((item) => (
-            <NewsCard key={item.id} item={item} openModal={openModal} />
+          items.map((item, i) => (
+            <NewsCard
+              key={i}
+              item={item}
+              openModal={openModal}
+              openDeleteModal={openDeleteModal}
+            />
           ))}
       </div>
     </div>

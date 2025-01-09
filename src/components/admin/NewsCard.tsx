@@ -10,9 +10,10 @@ import { Visibility } from "@/types/ApiTypes";
 interface NewsCardProps {
   item: NewsItem;
   openModal: (news: NewsItem) => void;
+  openDeleteModal: (id: string) => void;
 }
 
-const NewsCard = ({ item, openModal }: NewsCardProps) => {
+const NewsCard = ({ item, openModal, openDeleteModal }: NewsCardProps) => {
   return (
     <div className="bg-white rounded-lg shadow-sm overflow-hidden">
       <div className="flex">
@@ -37,7 +38,10 @@ const NewsCard = ({ item, openModal }: NewsCardProps) => {
               >
                 Edit
               </button>
-              <button className="px-3 py-1 text-sm font-medium text-white bg-red-500 rounded-md border border-transparent hover:bg-white hover:border-red-500 hover:text-red-500">
+              <button
+                className="px-3 py-1 text-sm font-medium text-white bg-red-500 rounded-md border border-transparent hover:bg-white hover:border-red-500 hover:text-red-500"
+                onClick={() => openDeleteModal(item._id as string)}
+              >
                 Delete
               </button>
             </div>

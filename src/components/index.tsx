@@ -41,5 +41,6 @@ export {
 import AdminHeader from "./admin/AdminHeader";
 import NewsCard from "./admin/NewsCard";
 import EditNewsModal from "./admin/EditNewsModal";
+import DeleteModal from "./admin/DeleteModal";
 
-export { AdminHeader, NewsCard,EditNewsModal };
+export { AdminHeader, NewsCard, EditNewsModal, DeleteModal };

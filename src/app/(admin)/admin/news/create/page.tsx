@@ -83,7 +83,7 @@ const Page: React.FC = () => {
     <div className="min-h-screen bg-green-50 flex py-3 px-3 justify-center relative">
        <Link
           href={`/admin/news/`}
-          className="px-3 py-1 text-sm m-2 font-medium flex gap-1 justify-center items-center text-white bg-green-500 rounded-md border border-transparent hover:bg-white hover:border-green-500 hover:text-green-500 absolute top-0 left-0 z-50"
+          className="px-3 py-1 text-sm m-2 font-medium flex gap-1 justify-center items-center text-white bg-green-500 rounded-md border border-transparent hover:bg-white hover:border-green-500 hover:text-green-500 absolute top-0 left-0"
         >
           <FaArrowLeft />
           Back

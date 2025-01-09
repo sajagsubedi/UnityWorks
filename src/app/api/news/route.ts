@@ -3,7 +3,11 @@ import connectDb from "@/lib/connectDb";
 import { NextResponse } from "next/server";
 import cloudinary from "@/lib/cloudinary";
 import { checkAuth } from "@/middlewares/checkAuth.middleware";
-import { CloudinaryUploadResult, dbQueryType, Visibility } from "@/types/ApiTypes";
+import {
+  CloudinaryUploadResult,
+  dbQueryType,
+  Visibility,
+} from "@/types/ApiTypes";
 
 // Route 1: to fetch news with pagination
 export const GET = async (request: Request) => {
@@ -32,6 +36,9 @@ export const GET = async (request: Request) => {
       }
     }
 
+    // Fetch total news count
+    const totalNews = await News.countDocuments(dbQuery);
+
     // Fetch news from the database with pagination and sorting by date
     const news = await News.find(dbQuery)
       .sort({ createdAt: -1 })
@@ -39,7 +46,14 @@ export const GET = async (request: Request) => {
       .limit(limit);
 
     return NextResponse.json(
-      { success: true, news, message: "News fetched successfully!" },
+      {
+        success: true,
+        totalNews,
+        page,
+        limit,
+        news,
+        message: "News fetched successfully!",
+      },
       { status: 200 }
     );
   } catch (err) {

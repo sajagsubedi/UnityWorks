@@ -74,15 +74,15 @@ const EditNewsModal = (props: PageProps) => {
   };
 
   return (
-    <div className="max-h-screen bg-gray-900 bg-opacity-25 w-full flex py-3 px-3 justify-center fixed z-50 top-0 left-0">
-      <div className="max-w-2xl w-full bg-white rounded-lg shadow-lg p-6 relative">
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">Update News</h1>
+    <div className="min-h-screen bg-gray-900 bg-opacity-25 w-full flex py-3 px-3 justify-center fixed z-50 top-0 left-0">
+      <div className="max-w-2xl w-full bg-white rounded-lg shadow-lg px-6 py-4 relative">
+        <h1 className="text-2xl font-bold text-gray-800 mb-3">Update News</h1>
         <button className="absolute top-0 right-0 text-black z-[99] m-3" onClick={closeModal}>
         <IoMdClose className="text-black h-6 w-6"/>
         </button>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center justify-between gap-2">
               <div className="w-3/4">
                 <label
                   htmlFor="image"
@@ -128,7 +128,7 @@ const EditNewsModal = (props: PageProps) => {
               </div>
             </div>
             {preview && (
-              <div className="mt-4">
+              <div className="mt-2">
                 <p className="text-sm text-gray-700 mb-1">Image Preview:</p>
                 <img
                   src={preview}
@@ -166,7 +166,7 @@ const EditNewsModal = (props: PageProps) => {
               name="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              rows={6}
+              rows={5}
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent"
             />
           </div>

@@ -3,12 +3,12 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { RiLoader2Fill } from "react-icons/ri";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 
-import { Visibility, NewsItem } from "@/models/News.models";
+import {  NewsItem } from "@/models/News.models";
+import { Visibility } from "@/types/ApiTypes";
 
 interface PageProps {
   news: NewsItem;

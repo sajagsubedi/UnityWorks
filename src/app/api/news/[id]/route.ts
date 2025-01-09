@@ -1,20 +1,10 @@
-import News, { Visibility } from "@/models/News.models";
+import News from "@/models/News.models";
 import connectDb from "@/lib/connectDb";
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 import cloudinary from "@/lib/cloudinary";
 import { checkAuth } from "@/middlewares/checkAuth.middleware";
-
-interface dbQueryType {
-  _id?: string;
-  visibility?: Visibility;
-}
-
-// Define the Cloudinary upload result interface
-interface CloudinaryUploadResult {
-  public_id: string;
-  secure_url: string;
-}
+import { CloudinaryUploadResult, dbQueryType, Visibility } from "@/types/ApiTypes";
 
 // Route 1: to fetch news by ID
 export const GET = async (

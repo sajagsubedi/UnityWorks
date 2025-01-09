@@ -1,14 +1,10 @@
-import Notice, { Visibility } from "@/models/Notice.model";
+import Notice from "@/models/Notice.model";
 import connectDb from "@/lib/connectDb";
 import { NextResponse } from "next/server";
 import cloudinary from "@/lib/cloudinary";
 import { Image } from "@/models/Notice.model";
 import { checkAuth } from "@/middlewares/checkAuth.middleware";
-
-interface dbQueryType {
-  _id?: string;
-  visibility?: Visibility;
-}
+import { dbQueryType, Visibility } from "@/types/ApiTypes";
 
 // Route 1: to fetch Notices with pagination
 export const GET = async (request: Request) => {

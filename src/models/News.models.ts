@@ -1,9 +1,5 @@
 import mongoose, { Document, Schema } from "mongoose";
-
-export enum Visibility {
-  PUBLIC = "public",
-  PRIVATE = "private",
-}
+import { Visibility } from "@/types/ApiTypes";
 
 export interface NewsItem extends Document {
   title: string;

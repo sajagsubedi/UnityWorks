@@ -1,9 +1,6 @@
 import mongoose, { Document, Schema } from "mongoose";
+import { Visibility } from "@/types/ApiTypes";
 
-export enum Visibility {
-  PUBLIC = "public",
-  PRIVATE = "private",
-}
 export interface Image {
   url: string;
   public_id: string;

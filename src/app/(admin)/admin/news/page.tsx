@@ -6,16 +6,12 @@ import { EditNewsModal, NewsCard } from "@/components";
 import { NewsItem } from "@/models/News.models";
 import { RiLoader2Fill } from "react-icons/ri";
 import Link from "next/link";
-
-interface EditModalState {
-  isOpen: boolean;
-  news?: NewsItem;
-}
+import { EditNewsModalState } from "@/types/ComponentTypes";
 
 const Page = () => {
   const [items, setItems] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [editModal, setEditModal] = useState<EditModalState>({
+  const [editModal, setEditModal] = useState<EditNewsModalState>({
     isOpen: false,
   });
 

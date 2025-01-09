@@ -2,25 +2,16 @@
 
 import React, { useState, useEffect } from "react";
 import { FaRegCalendar, FaArrowLeft } from "react-icons/fa";
-import { NewsItem, Visibility } from "@/models/News.models";
+import { NewsItem } from "@/models/News.models";
 import axios, { AxiosError } from "axios";
 import Link from "next/link";
 import Image from "next/image";
 import { EditNewsModal } from "@/components";
-
-const dateOptions: Intl.DateTimeFormatOptions = {
-  year: "numeric",
-  month: "short",
-  day: "numeric",
-};
+import { Visibility } from "@/types/ApiTypes";
+import { dateOptions, EditNewsModalState } from "@/types/ComponentTypes";
 
 interface PageProps {
   params: { id: string };
-}
-
-interface EditModalState {
-  isOpen: boolean;
-  news?: NewsItem;
 }
 
 export default function Page({ params }: PageProps) {
@@ -30,7 +21,7 @@ export default function Page({ params }: PageProps) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const [editModal, setEditModal] = useState<EditModalState>({
+  const [editModal, setEditModal] = useState<EditNewsModalState>({
     isOpen: false,
   });
 

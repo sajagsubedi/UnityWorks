@@ -2,19 +2,15 @@
 
 import React from "react";
 import { FaRegCalendar } from "react-icons/fa";
-import { NewsItem, Visibility } from "@/models/News.models";
+import { NewsItem } from "@/models/News.models";
 import Link from "next/link";
+import { dateOptions } from "@/types/ComponentTypes";
+import { Visibility } from "@/types/ApiTypes";
 
 interface NewsCardProps {
   item: NewsItem;
   openModal: (news: NewsItem) => void;
 }
-
-const dateOptions: Intl.DateTimeFormatOptions = {
-  year: "numeric",
-  month: "short",
-  day: "numeric",
-};
 
 const NewsCard = ({ item, openModal }: NewsCardProps) => {
   return (

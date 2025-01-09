@@ -6,12 +6,7 @@ import { FaRegCalendar } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { RiLoader2Fill } from "react-icons/ri";
-
-const dateOptions: Intl.DateTimeFormatOptions = {
-  year: "numeric",
-  month: "short",
-  day: "numeric",
-};
+import { dateOptions } from "@/types/ComponentTypes";
 
 export default function News() {
   const [news, setNews] = useState<NewsItem[]>([]);

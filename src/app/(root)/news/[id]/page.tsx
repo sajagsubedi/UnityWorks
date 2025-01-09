@@ -2,12 +2,7 @@ import React from "react";
 import { FaRegCalendar } from "react-icons/fa";
 import { NewsItem } from "@/models/News.models";
 import axios from "axios";
-
-const dateOptions: Intl.DateTimeFormatOptions = {
-  year: "numeric",
-  month: "short",
-  day: "numeric",
-};
+import { dateOptions } from "@/types/ComponentTypes";
 
 interface PageProps {
   params: { id: string };

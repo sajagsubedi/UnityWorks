@@ -1,15 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-
-interface User {
-  _id: string;
-}
-
-interface SessionDataType {
-  isAuthenticated: boolean;
-  user: User | null;
-}
+import { SessionDataType } from "@/types/ApiTypes";
 
 export const useGetSession = () => {
   const [session, setSession] = useState<SessionDataType | null>(null);
@@ -19,20 +11,20 @@ export const useGetSession = () => {
   useEffect(() => {
     const fetchSession = async () => {
       try {
-        const response = await axios.get('/api/getsession');
+        const response = await axios.get("/api/getsession");
         if (response.data.isAuthenticated) {
           setSession({
             isAuthenticated: response.data.isAuthenticated,
             user: response.data.session?.user || null,
           });
         } else {
-          router.push('/login'); 
+          router.push("/login");
         }
       } catch (err) {
         console.log("Error fetching session:", err);
-        router.push('/login'); 
+        router.push("/login");
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     };
 

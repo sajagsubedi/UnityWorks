@@ -4,7 +4,7 @@ import React, { useState, useRef } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { RiLoader2Fill } from "react-icons/ri";
-import { Visibility } from "@/models/News.models";
+import { Visibility } from "@/types/ApiTypes";
 import { FaArrowLeft } from "react-icons/fa6";
 import Link from "next/link";
 

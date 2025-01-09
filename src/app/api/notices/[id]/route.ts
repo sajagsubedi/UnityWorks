@@ -1,13 +1,9 @@
-import Notice, { Visibility } from "@/models/News.models";
+import Notice from "@/models/News.models";
 import connectDb from "@/lib/connectDb";
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 import { checkAuth } from "@/middlewares/checkAuth.middleware";
-
-interface dbQueryType {
-  _id?: string;
-  visibility?: Visibility;
-}
+import { dbQueryType, Visibility } from "@/types/ApiTypes";
 
 // Route 1: to fetch notice by ID
 export const GET = async (

@@ -10,6 +10,12 @@ interface dbQueryType {
   visibility?: Visibility;
 }
 
+// Define the Cloudinary upload result interface
+interface CloudinaryUploadResult {
+  public_id: string;
+  secure_url: string;
+}
+
 // Route 1: to fetch news by ID
 export const GET = async (
   request: Request,
@@ -68,8 +74,8 @@ export const PATCH = async (
       );
     }
     const { id } = await params;
-    const { title, content, visibility } = await request.json();
 
+    //checking if the id is valid or not
     if (mongoose.Types.ObjectId.isValid(id) === false) {
       return NextResponse.json(
         { success: false, message: "Invalid news ID" },
@@ -77,21 +83,76 @@ export const PATCH = async (
       );
     }
 
-    const news = await News.findOneAndUpdate(
-      { _id: id },
-      { title, content, visibility },
-      { new: true }
-    );
-
-    if (!news) {
+    //fetch old news with id
+    const oldNews = await News.findOne({ _id: id });
+    if (!oldNews) {
       return NextResponse.json(
         { success: false, message: "News not found" },
         { status: 404 }
       );
     }
+    
+    //formdata
+    const formData = await request.formData();
+
+    // Extract the title, description, image, and visibility from the form data
+    const title = formData.get("title") as string;
+    const description = formData.get("description") as string;
+    const visibility = formData.get("visibility") as Visibility;
+
+    //change the value of old news
+    if (title) {
+      oldNews.title = title;
+    }
+    if (description) {
+      oldNews.description = description;
+    }
+    if (visibility) {
+      oldNews.visibility = visibility;
+    }
+
+    //extract file from formdata
+    const file = formData.get("image") as File | null;
+
+    //upload file to cloudinary if exists
+    if (file) {
+      const bytes = await file.arrayBuffer();
+      const buffer = Buffer.from(bytes);
+
+      const result = await new Promise<CloudinaryUploadResult>(
+        (resolve, reject) => {
+          const uploadStream = cloudinary.uploader.upload_stream(
+            {
+              folder: "news",
+            },
+            (error, result) => {
+              if (error) {
+                reject(error);
+              } else {
+                resolve(result as CloudinaryUploadResult);
+              }
+            }
+          );
+
+          uploadStream.end(buffer);
+        }
+      );
+
+      //delete old image
+      await cloudinary.uploader.destroy(oldNews.image.public_id);
+
+      //update the newValues object with the uploaded image url
+      oldNews.image = {
+        url: result.secure_url,
+        public_id: result.public_id,
+      };
+    }
+
+    //save the news
+    await oldNews.save();
 
     return NextResponse.json(
-      { success: true, news, message: "News updated successfully!" },
+      { success: true, news: oldNews, message: "News updated successfully!" },
       { status: 200 }
     );
   } catch (err) {

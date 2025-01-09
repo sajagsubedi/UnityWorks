@@ -1,8 +1,12 @@
-import React from "react";
-import { FaRegCalendar } from "react-icons/fa";
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { FaRegCalendar, FaArrowLeft } from "react-icons/fa";
 import { NewsItem, Visibility } from "@/models/News.models";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import Link from "next/link";
+import Image from "next/image";
+import { EditNewsModal } from "@/components";
 
 const dateOptions: Intl.DateTimeFormatOptions = {
   year: "numeric",
@@ -14,21 +18,58 @@ interface PageProps {
   params: { id: string };
 }
 
-export default async function Page({ params }: PageProps) {
+interface EditModalState {
+  isOpen: boolean;
+  news?: NewsItem;
+}
+
+export default function Page({ params }: PageProps) {
   const { id } = params;
 
-  let news: NewsItem | null = null;
+  const [news, setNews] = useState<NewsItem | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  try {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/news/${id}`
+  const [editModal, setEditModal] = useState<EditModalState>({
+    isOpen: false,
+  });
+
+  const fetchNews = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/news/${id}`
+      );
+      setNews(response.data.news);
+    } catch (error) {
+      const err = error as AxiosError;
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchNews();
+  }, [id]);
+
+  //function for editModal
+  const closeModal = () => {
+    setEditModal({ isOpen: false });
+  };
+
+  const openModal = (news: NewsItem) => {
+    setEditModal({ isOpen: true, news });
+  };
+
+  if (loading) {
+    return (
+      <div className="max-w-4xl mx-auto py-12 px-4">
+        <p className="text-gray-500">Loading news item...</p>
+      </div>
     );
-    news = response.data.news;
-  } catch (error) {
-    console.error(error);
   }
 
-  if (!news) {
+  if (error || !news) {
     return (
       <div className="max-w-4xl mx-auto py-12 px-4">
         <p className="text-red-500">
@@ -39,21 +80,39 @@ export default async function Page({ params }: PageProps) {
   }
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-4">
-      <div className="flex w-full justify-end">
+    <div className="mx-auto w-full y-5 px-4">
+      {editModal.isOpen && editModal.news && (
+        <EditNewsModal
+          news={editModal?.news}
+          closeModal={closeModal}
+          fetchNews={fetchNews}
+        />
+      )}
+      <div className="flex w-full justify-start mb-4">
         <Link
-          href={`admin/news/${news._id}/edit`}
-          className="px-3 py-1 text-sm m-2 font-medium text-white bg-green-500 rounded-md border border-transparent hover:bg-white hover:border-green-500 hover:text-green-500"
+          href={`/admin/news/`}
+          className="px-3 py-1 text-sm m-2 font-medium flex gap-1 justify-center items-center text-white bg-green-500 rounded-md border border-transparent hover:bg-white hover:border-green-500 hover:text-green-500"
         >
-          Edit
+          <FaArrowLeft />
+          Back
         </Link>
       </div>
-      <article className="bg-white rounded-xl overflow-hidden">
+      <article className="bg-white rounded-xl overflow-hidden w-full max-w-5xl mx-auto">
+      <div className="flex w-full justify-end mb-1">
+      <button
+          className="px-3 py-1 text-sm m-2 font-medium flex gap-1 justify-center items-center text-white bg-green-500 rounded-md border border-transparent hover:bg-white hover:border-green-500 hover:text-green-500"
+          onClick={() => openModal(news)}
+        >
+          Edit
+        </button>
+      </div>
         {news.image?.url && (
-          <img
+          <Image
             src={news.image.url}
             alt={news.title}
             className="w-full h-[400px] object-fill"
+            width={1200}
+            height={1200}
           />
         )}
 
@@ -68,9 +127,7 @@ export default async function Page({ params }: PageProps) {
             </span>
           </div>
 
-          <h1 className="text-3xl font-bold text-green-900">
-            {news.title}
-          </h1>
+          <h1 className="text-3xl font-bold text-green-900">{news.title}</h1>
           <span
             className={`px-2 py-1 text-xs font-medium rounded uppercase ${
               news.visibility === Visibility.PUBLIC

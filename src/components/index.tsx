@@ -40,5 +40,6 @@ export {
 //admin components
 import AdminHeader from "./admin/AdminHeader";
 import NewsCard from "./admin/NewsCard";
+import EditNewsModal from "./admin/EditNewsModal";
 
-export { AdminHeader, NewsCard };
+export { AdminHeader, NewsCard,EditNewsModal };

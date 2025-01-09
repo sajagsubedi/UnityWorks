@@ -5,6 +5,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { RiLoader2Fill } from "react-icons/ri";
 import { Visibility } from "@/models/News.models";
+import { FaArrowLeft } from "react-icons/fa6";
+import Link from "next/link";
 
 const Page: React.FC = () => {
   const [title, setTitle] = useState("");
@@ -78,7 +80,14 @@ const Page: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-green-50 flex py-3 px-3 justify-center">
+    <div className="min-h-screen bg-green-50 flex py-3 px-3 justify-center relative">
+       <Link
+          href={`/admin/news/`}
+          className="px-3 py-1 text-sm m-2 font-medium flex gap-1 justify-center items-center text-white bg-green-500 rounded-md border border-transparent hover:bg-white hover:border-green-500 hover:text-green-500 absolute top-0 left-0 z-50"
+        >
+          <FaArrowLeft />
+          Back
+        </Link>
       <div className="max-w-2xl w-full bg-white rounded-lg shadow-lg p-6">
         <h1 className="text-2xl font-bold text-gray-800 mb-6">Add News</h1>
         <form onSubmit={handleSubmit} className="space-y-6">

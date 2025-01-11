@@ -1,8 +1,8 @@
-import Notice from "@/models/Notice.model";
+import Notice from "@/models/Notice.models";
 import connectDb from "@/lib/connectDb";
 import { NextResponse } from "next/server";
 import cloudinary from "@/lib/cloudinary";
-import { Image } from "@/models/Notice.model";
+import { Image } from "@/models/Notice.models";
 import { checkAuth } from "@/middlewares/checkAuth.middleware";
 import { dbQueryType, Visibility } from "@/types/ApiTypes";
 
@@ -13,13 +13,22 @@ export const GET = async (request: Request) => {
     const { searchParams } = new URL(request.url);
     const limit = parseInt(searchParams.get("limit") || "10", 10);
     const page = parseInt(searchParams.get("page") || "1", 10);
+    const pageType = searchParams.get("pagetype");
 
     const skip = (page - 1) * limit;
 
     const dbQuery: dbQueryType = {};
     const auth = await checkAuth(); //checking auth
+
     if (!auth || !auth.isAuthenticated) {
       dbQuery["visibility"] = Visibility.PUBLIC; // Fetch public news only if not authenticated
+    }
+
+    //setting visibility public for authenticated users but accessing through landing page
+    if (auth && auth.isAuthenticated) {
+      if (pageType == "landing") {
+        dbQuery["visibility"] = Visibility.PUBLIC; // Fetch public news only if auth user accessing through landing page
+      }
     }
 
     // Fetch total notices count

@@ -8,7 +8,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { Visibility } from "@/types/ApiTypes";
 import { FaRegCalendar } from "react-icons/fa6";
 import { dateOptions } from "@/types/ComponentTypes";
-import { NoticeItem } from "@/models/Notice.model";
+import { NoticeItem } from "@/models/Notice.models";
 
 interface NoticeCardProps {
   item: NoticeItem;

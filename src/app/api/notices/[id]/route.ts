@@ -1,4 +1,4 @@
-import Notice from "@/models/News.models";
+import Notice from "@/models/Notice.models";
 import connectDb from "@/lib/connectDb";
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
@@ -23,6 +23,7 @@ export const GET = async (
     const dbQuery: dbQueryType = {
       _id: id,
     };
+
     const auth = await checkAuth(); //checking auth
     if (!auth || !auth.isAuthenticated) {
       dbQuery["visibility"] = Visibility.PUBLIC; // Fetch public news only if not authenticated

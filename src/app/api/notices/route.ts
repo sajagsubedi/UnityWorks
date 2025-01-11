@@ -22,13 +22,23 @@ export const GET = async (request: Request) => {
       dbQuery["visibility"] = Visibility.PUBLIC; // Fetch public news only if not authenticated
     }
 
+    // Fetch total notices count
+    const totalNotices = await Notice.countDocuments(dbQuery);
+
     const notices = await Notice.find(dbQuery)
-      .sort({ date: -1 })
+      .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit);
 
     return NextResponse.json(
-      { success: true, notices, message: "Notices fetched successfully!" },
+      {
+        success: true,
+        totalNotices,
+        limit,
+        page,
+        notices,
+        message: "Notices fetched successfully!",
+      },
       { status: 200 }
     );
   } catch (err) {

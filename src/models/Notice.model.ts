@@ -6,14 +6,14 @@ export interface Image {
   public_id: string;
 }
 
-export interface Notice extends Document {
+export interface NoticeItem extends Document {
   title: string;
   images: Image[];
   visibility: Visibility;
   createdAt: Date;
   updatedAt: Date;
 }
-export const noticeSchema: Schema<Notice> = new Schema(
+export const noticeSchema: Schema<NoticeItem> = new Schema(
   {
     title: {
       type: String,
@@ -42,5 +42,7 @@ export const noticeSchema: Schema<Notice> = new Schema(
   }
 );
 
-export default (mongoose.models.Notice as mongoose.Model<Notice>) ||
-  mongoose.model<Notice>("Notice", noticeSchema);
+const Notice =
+  (mongoose?.models?.Notice as mongoose.Model<NoticeItem>) ||
+  mongoose.model<NoticeItem>("Notice", noticeSchema);
+export default Notice;

@@ -49,7 +49,7 @@ export const GET = async (
 };
 
 //Route 2:to update notice
-export const PATCH = async (request: Request) => {
+export const PATCH = async () => {
   return NextResponse.json(
     { success: true, message: "Notice updated successfully!" },
     { status: 200 }

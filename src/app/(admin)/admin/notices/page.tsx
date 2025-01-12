@@ -1,20 +1,23 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { RiLoader2Fill } from "react-icons/ri";
 import Link from "next/link";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Visibility } from "@/types/ApiTypes";
 import { FaRegCalendar } from "react-icons/fa6";
-import { dateOptions } from "@/types/ComponentTypes";
+import { dateOptions, DeleteModalState } from "@/types/ComponentTypes";
 import { NoticeItem } from "@/models/Notice.models";
+import { toast } from "react-toastify";
+import { DeleteModal } from "@/components";
 
 interface NoticeCardProps {
   item: NoticeItem;
+  openDeleteModal: (id: string) => void;
 }
 
-const NoticeCard = ({ item }: NoticeCardProps) => {
+const NoticeCard = ({ item, openDeleteModal }: NoticeCardProps) => {
   return (
     <div className="bg-white rounded-lg shadow-sm overflow-hidden">
       <div className="p-3 flex flex-col flex-grow gap-2">
@@ -27,7 +30,10 @@ const NoticeCard = ({ item }: NoticeCardProps) => {
             <button className="px-3 py-1 text-sm font-medium text-white bg-green-500 rounded-md border border-transparent hover:bg-white hover:border-green-500 hover:text-green-500">
               Edit
             </button>
-            <button className="px-3 py-1 text-sm font-medium text-white bg-red-500 rounded-md border border-transparent hover:bg-white hover:border-red-500 hover:text-red-500">
+            <button
+              className="px-3 py-1 text-sm font-medium text-white bg-red-500 rounded-md border border-transparent hover:bg-white hover:border-red-500 hover:text-red-500"
+              onClick={() => openDeleteModal(item._id as string)}
+            >
               Delete
             </button>
           </div>
@@ -66,6 +72,11 @@ const Page = () => {
   const [page, setPage] = useState(1);
   const [totalNotices, setTotalNotices] = useState(0);
 
+  const [deleteModal, setDeleteModal] = useState<DeleteModalState>({
+    isOpen: false,
+  });
+  const [isDeleting, setIsDeleting] = useState(false);
+
   const fetchNotices = async () => {
     try {
       const response = await axios.get("/api/notices?page=1");
@@ -92,11 +103,43 @@ const Page = () => {
     }
   };
 
+  //function for delete modal
+  const openDeleteModal = (id: string) => {
+    setDeleteModal({ isOpen: true, id });
+  };
+  const closeDeleteModal = () => {
+    setDeleteModal({ isOpen: false });
+  };
+
+  const handleDeleteNotice = async () => {
+    setIsDeleting(true);
+    try {
+      const response = await axios.delete(`/api/notices/${deleteModal.id}`);
+      console.log(response);
+      toast.success(response.data.message);
+      fetchNotices();
+    } catch (err) {
+      const error = err as AxiosError;
+      toast.error(error.message);
+    } finally {
+      closeDeleteModal();
+      setIsDeleting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen px-[10vw] py-12 bg-green-50">
       <h2 className="font-bold text-3xl text-green-800 mb-6 text-center">
         Notices Management
       </h2>
+      {deleteModal.isOpen && deleteModal.id && (
+        <DeleteModal
+          onCancel={closeDeleteModal}
+          onConfirm={handleDeleteNotice}
+          message="notice"
+          isDeleting={isDeleting}
+        />
+      )}
       <div className="w-full flex justify-end">
         <Link
           className="bg-green-500 border border-transparent hover:border-green-500 hover:bg-transparent hover:text-green-500 text-white px-4 py-2 rounded-md"
@@ -119,7 +162,13 @@ const Page = () => {
           }
         >
           {!loading &&
-            items.map((item, i) => <NoticeCard item={item} key={i} />)}
+            items.map((item, i) => (
+              <NoticeCard
+                item={item}
+                key={i}
+                openDeleteModal={openDeleteModal}
+              />
+            ))}
         </InfiniteScroll>
       </div>
     </div>

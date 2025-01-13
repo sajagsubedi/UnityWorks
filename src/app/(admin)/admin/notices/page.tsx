@@ -27,9 +27,12 @@ const NoticeCard = ({ item, openDeleteModal }: NoticeCardProps) => {
             {new Date(item.createdAt).toLocaleDateString("en-US", dateOptions)}
           </span>
           <div className="flex items-center gap-2">
-            <button className="px-3 py-1 text-sm font-medium text-white bg-green-500 rounded-md border border-transparent hover:bg-white hover:border-green-500 hover:text-green-500">
+            <Link
+              className="px-3 py-1 text-sm font-medium text-white bg-green-500 rounded-md border border-transparent hover:bg-white hover:border-green-500 hover:text-green-500"
+              href={`notices/${item._id}/edit`}
+            >
               Edit
-            </button>
+            </Link>
             <button
               className="px-3 py-1 text-sm font-medium text-white bg-red-500 rounded-md border border-transparent hover:bg-white hover:border-red-500 hover:text-red-500"
               onClick={() => openDeleteModal(item._id as string)}

@@ -3,12 +3,7 @@ import connectDb from "@/lib/connectDb";
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 import { checkAuth } from "@/middlewares/checkAuth.middleware";
-import {
-  CloudinaryUploadResult,
-  dbQueryType,
-  ImageType,
-  Visibility,
-} from "@/types/ApiTypes";
+import { dbQueryType, ImageType, Visibility } from "@/types/ApiTypes";
 import cloudinary from "@/lib/cloudinary";
 
 // Route 1: to fetch notice by ID
@@ -135,7 +130,7 @@ export const PATCH = async (
       oldNotice.images.map(async (image) => {
         await cloudinary.uploader.destroy(image.public_id);
       });
-      
+
       oldNotice.images = imageUrls;
     }
 

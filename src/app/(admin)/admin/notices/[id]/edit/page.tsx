@@ -5,7 +5,6 @@ import axios, { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { IoMdClose } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 
 import { Visibility } from "@/types/ApiTypes";

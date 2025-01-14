@@ -116,6 +116,7 @@ const Page = ({ params }: PageProps) => {
     if (!title || title.length == 0) {
       setLoading(false);
       toast.error("Please enter a title");
+      return;
     }
 
     formData.append("title", title);
@@ -141,6 +142,7 @@ const Page = ({ params }: PageProps) => {
           "Content-Type": "multipart/form-data",
         },
       });
+      console.log(response.data);
       toast.success(response.data.message);
     } catch (err) {
       toast.error("An error occurred while updating the notice.");
@@ -158,6 +160,7 @@ const Page = ({ params }: PageProps) => {
       );
       const { notice } = response.data;
       setTitle(notice?.title);
+      setVisibility(notice?.visibility);
 
       //setting images in input initially during fetching
       if (notice?.images && noticeImagesRef.current) {
@@ -204,15 +207,20 @@ const Page = ({ params }: PageProps) => {
 
   if (dataLoading) {
     return (
-      <section className="h-full w-full bg-white flex justify-center items-center">
-        <div>Loading...</div>;
+      <section className="h-full w-full bg-white flex justify-center items-center py-[10vw]">
+        <div className="w-8 h-8 animate-spin relative">
+          <span className="w-3 h-3 bg-green-500 rounded-full top-0 left-0 absolute"></span>
+          <span className="w-3 h-3 bg-green-500 rounded-full top-0 right-0 absolute"></span>
+          <span className="w-3 h-3 bg-green-500 rounded-full bottom-0 left-0 absolute"></span>
+          <span className="w-3 h-3 bg-green-500 rounded-full bottom-0 right-0 absolute"></span>
+        </div>
       </section>
     );
   }
 
   return (
-    <div className="min-h-screen bg-green-50 bg-opacity-25 w-full flex py-3 px-3 justify-center">
-      <div className="max-w-2xl w-full bg-white rounded-lg shadow-lg px-6 py-4 relative">
+    <div className="min-h-screen bg-green-50 bg-opacity-25 w-full flex py-10 px-3 justify-center">
+      <div className="max-w-2xl w-full bg-white rounded-lg h-max shadow-lg px-6 py-4 relative">
         <h1 className="text-2xl font-bold text-gray-800 mb-3">Update Notice</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -302,9 +310,6 @@ const Page = ({ params }: PageProps) => {
             </div>
           </div>
           <div className="flex justify-end space-x-4">
-            <button className="px-4 py-2 bg-green-500 text-white rounded-md w-28 hover:bg-green-600 flex items-center justify-center">
-              Cancel
-            </button>
             <button
               type="submit"
               className="px-4 py-2 bg-green-500 text-white rounded-md w-28 hover:bg-green-600 flex items-center justify-center gap-2 disabled:bg-green-400"

@@ -1,14 +1,9 @@
 import mongoose, { Document, Schema } from "mongoose";
-import { Visibility } from "@/types/ApiTypes";
-
-export interface Image {
-  url: string;
-  public_id: string;
-}
+import { Visibility, ImageType } from "@/types/ApiTypes";
 
 export interface NoticeItem extends Document {
   title: string;
-  images: Image[];
+  images: ImageType[];
   visibility: Visibility;
   createdAt: Date;
   updatedAt: Date;

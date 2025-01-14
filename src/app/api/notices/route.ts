@@ -2,9 +2,8 @@ import Notice from "@/models/Notice.models";
 import connectDb from "@/lib/connectDb";
 import { NextResponse } from "next/server";
 import cloudinary from "@/lib/cloudinary";
-import { Image } from "@/models/Notice.models";
 import { checkAuth } from "@/middlewares/checkAuth.middleware";
-import { dbQueryType, Visibility } from "@/types/ApiTypes";
+import { dbQueryType, Visibility, ImageType } from "@/types/ApiTypes";
 
 // Route 1: to fetch Notices with pagination
 export const GET = async (request: Request) => {
@@ -85,7 +84,7 @@ export const POST = async (request: Request) => {
       const arrayBuffer = await file.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);
 
-      return new Promise<Image>((resolve, reject) => {
+      return new Promise<ImageType>((resolve, reject) => {
         const uploadStream = cloudinary.uploader.upload_stream(
           { folder: "Notice" },
           (error, result) => {
@@ -95,7 +94,7 @@ export const POST = async (request: Request) => {
               resolve({
                 url: result?.secure_url,
                 public_id: result?.public_id,
-              } as Image);
+              } as ImageType);
             }
           }
         );

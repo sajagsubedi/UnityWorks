@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { toast } from "react-toastify";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -160,41 +160,32 @@ const Page = ({ params }: PageProps) => {
       const { notice } = response.data;
       setTitle(notice?.title);
       setVisibility(notice?.visibility);
+      setPreviews(notice?.images);
 
-      //setting images in input initially during fetching
       if (notice?.images && noticeImagesRef.current) {
         const dataTransfer = new DataTransfer();
 
-        // Fetch each image URL and convert to a File object
         const files = await Promise.all(
           notice.images.map(async (image: ImageDataType) => {
-            const response = await fetch(image.url);
-            const blob = await response.blob();
-            return new File([blob], image.public_id || "image.jpg", {
-              type: blob.type,
-            });
+            try {
+              const res = await fetch(image.url);
+              if (!res.ok) throw new Error(`Failed to fetch ${image.url}`);
+              const blob = await res.blob();
+              return new File([blob], image.public_id || "image.jpg", {
+                type: blob.type,
+              });
+            } catch (error) {
+              console.error("Error fetching image:", error);
+              throw error;
+            }
           })
         );
 
-        // Add each File object to the DataTransfer object
-        files.forEach((file) => {
-          dataTransfer.items.add(file);
-        });
-
-        // Set the files on the input
-        (noticeImagesRef.current as HTMLInputElement).files =
-          dataTransfer.files;
-
-        // Generate previews for the images
-        setPreviews(
-          files.map((file) => ({
-            url: URL.createObjectURL(file),
-          }))
-        );
+        files.forEach((file) => dataTransfer.items.add(file));
+        noticeImagesRef.current.files = dataTransfer.files;
       }
     } catch (error) {
-      const err = error as AxiosError;
-      console.log(err);
+      console.error("Error fetching notice information:", error);
     } finally {
       setDataLoading(false);
     }

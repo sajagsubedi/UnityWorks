@@ -1,43 +1,38 @@
-"use client";
-
-import axios, { AxiosError } from "axios";
-import { NewsItem } from "@/models/News.models";
 import { FaRegCalendar } from "react-icons/fa";
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { RiLoader2Fill } from "react-icons/ri";
 import { dateOptions } from "@/types/ComponentTypes";
+import { useQuery } from "@tanstack/react-query";
+import { NewsItem } from "@/models/News.models";
 
 export default function News() {
-  const [news, setNews] = useState<NewsItem[]>([]);
-  const [loading, setLoading] = useState(true);
-
   const fetchNews = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get("/api/news?limit=5&pagetype=landing");
-      setNews(response.data.news);
-    } catch (err) {
-      const error = err as AxiosError;
-      console.log(error.message);
-    } finally {
-      setLoading(false);
-    }
+    const response = await fetch("/api/news?limit=5&pagetype=landing");
+    return response.json();
   };
-  useEffect(() => {
-    fetchNews();
-  }, []);
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["news"],
+    queryFn: fetchNews,
+  });
+
+  if (error) {
+    console.log(error);
+  }
 
   return (
     <div className=" py-10 w-full max-w-[90vw] mx-auto">
       <div className="flex flex-col w-full gap-3 relative">
-        {loading && (
+        {isLoading && (
           <RiLoader2Fill className="animate-spin text-3xl absolute left-[50%] top-[50%]" />
         )}
-        {!loading &&
-          news.map((item, i) => {
+        {!isLoading &&
+          data.news.map((item: NewsItem, i: number) => {
             return (
-              <div className="rounded-lg border-b border-green-500 w-full overflow-hidden md:max-h-44" key={i}>
+              <div
+                className="rounded-lg border-b border-green-500 w-full overflow-hidden md:max-h-44"
+                key={i}
+              >
                 <div className="flex flex-col md:flex-row">
                   <img
                     src={item.image.url}

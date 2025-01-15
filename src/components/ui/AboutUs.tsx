@@ -29,7 +29,7 @@ export default function AboutUs() {
           href="/about-us/brief-introduction"
           className="inline-flex text-white mt-4  bg-green-500 border-0 py-1 px-6 focus:outline-none hover:bg-green-600 rounded font-medium text-lg text-center"
         >
-          Read More
+          Discover More
         </Link>
       </div>
     </section>

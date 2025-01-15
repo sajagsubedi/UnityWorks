@@ -25,8 +25,8 @@ export default function NotFound() {
           Page Not Found
         </h2>
         <p className="text-green-600 mb-8">
-          Oops! The page you're looking for seems to have gone on an unexpected
-          journey.
+          Oops! The page you&apos;re looking for seems to have gone on an
+          unexpected journey.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

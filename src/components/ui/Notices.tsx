@@ -5,7 +5,7 @@ import { dateOptions } from "@/types/ComponentTypes";
 import { useQuery } from "@tanstack/react-query";
 import { NoticeItem } from "@/models/Notice.models";
 
-export default function News() {
+export default function Notices() {
   const fetchNotices = async () => {
     const response = await fetch("/api/notices?limit=5&pagetype=landing");
     return response.json();

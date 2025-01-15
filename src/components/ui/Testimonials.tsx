@@ -3,11 +3,14 @@
 import React from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { FaChevronRight, FaChevronLeft, FaQuoteRight } from "react-icons/fa";
-import Autoplay from 'embla-carousel-autoplay'
+import Autoplay from "embla-carousel-autoplay";
 import { testimonials } from "@/constants/Testimonials";
+import Image from "next/image";
 
 export default function Testimonials() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true },[Autoplay({delay:8000})]);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
+    Autoplay({ delay: 8000 }),
+  ]);
 
   const scrollPrev = React.useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -33,12 +36,17 @@ export default function Testimonials() {
           </div>
           <div className="overflow-hidden relative -z-10" ref={emblaRef}>
             <div className="flex">
-              {testimonials.map((testimonial,ind) => (
-                <div className="bg-gradient-to-b from-green-100 to-lime-100 pb-8 px-6 rounded-lg shadow-lg flex pt-10 flex-[0_0_100%] min-w-0 gap-3" key={ind}>
+              {testimonials.map((testimonial, ind) => (
+                <div
+                  className="bg-gradient-to-b from-green-100 to-lime-100 pb-8 px-6 rounded-lg shadow-lg flex pt-10 flex-[0_0_100%] min-w-0 gap-3"
+                  key={ind}
+                >
                   <div className=" min-h-24 min-w-24 hidden md:block">
-                    <img
+                    <Image
                       src={testimonial.image}
                       alt={testimonial.name}
+                      width={90}
+                      height={90}
                       className="w-24 h-24 rounded-full border-4 border-green-500"
                     />
                   </div>
@@ -54,18 +62,18 @@ export default function Testimonials() {
             </div>
           </div>
 
-            <button
-              onClick={scrollPrev}
-              className=" bg-white rounded-full p-2 shadow-md absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/2"
-            >
-              <FaChevronLeft className="w-5 h-5 text-green-500" />
-            </button>
-            <button
-              onClick={scrollNext}
-              className=" bg-white rounded-full p-2 shadow-md absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-1/2"
-            >
-              <FaChevronRight className="w-5 h-5 text-green-500" />
-            </button>
+          <button
+            onClick={scrollPrev}
+            className=" bg-white rounded-full p-2 shadow-md absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/2"
+          >
+            <FaChevronLeft className="w-5 h-5 text-green-500" />
+          </button>
+          <button
+            onClick={scrollNext}
+            className=" bg-white rounded-full p-2 shadow-md absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-1/2"
+          >
+            <FaChevronRight className="w-5 h-5 text-green-500" />
+          </button>
         </div>
       </div>
     </div>

@@ -53,7 +53,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
           href="/"
           className={`block py-3  text-center md:hover:bg-transparent md:hover:text-green-500 md:bg-transparent  ${
             pathname !== "/"
-              ? "text-gray-500 border-b md:text-black border-gray-600 md:border-0  hover:bg-green-500 hover:text-white"
+              ? "text-gray-700 border-b md:text-black border-gray-600 md:border-0  hover:bg-green-500 hover:text-white"
               : "text-white bg-green-500 hover:bg-green-700 md:text-green-600"
           } md:p-0 text-base  font-normal`}
         >
@@ -65,12 +65,12 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
         <span
           className={`flex gap-1 items-center justify-center py-3  text-center md:hover:bg-transparent md:hover:text-green-500 md:bg-transparent  ${
             pathname !== "/about-us"
-              ? "text-gray-500 border-b md:text-black border-gray-600 md:border-0 hover:bg-green-500 hover:text-white"
+              ? "text-gray-700 border-b md:text-black border-gray-600 md:border-0 hover:bg-green-500 hover:text-white"
               : "text-white bg-green-500 hover:bg-green-600 md:text-green-600"
           } md:p-0`}
         >
           <Link className="w-[50%] md:w-auto flex justify-end" href="/about-us">
-            <span className="transform translate-x-[50%] md:translate-x-0 text-nowrap text-base  font-normal ">
+            <span className="transform translate-x-[50%] md:translate-x-0  text-base  font-normal ">
               ABOUT US
             </span>
           </Link>
@@ -87,7 +87,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             <li className="border-b border-gray-500 w-full text-center md:text-left md:border-b-0 ">
               <Link
                 href="/about-us/introduction"
-                className="text-sm text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
+                className="text-sm text-gray-700 p-3 font-normal hover:text-green-500"
               >
                 BRIEF INTRODUCTION
               </Link>
@@ -95,7 +95,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             <li className="border-b border-gray-500 w-full text-center md:text-left md:border-b-0">
               <Link
                 href="/about-us/message-from-chairperson"
-                className="text-sm text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
+                className="text-sm text-gray-700 p-3  font-normal hover:text-green-500"
               >
                 MESSAGE FROM CHAIRPERSON
               </Link>
@@ -103,7 +103,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             <li className="border-b border-gray-500 w-full text-center md:text-left md:border-b-0">
               <Link
                 href="/about-us/commitment-from-ceo"
-                className="text-sm text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
+                className="text-sm text-gray-700 p-3  font-normal hover:text-green-500"
               >
                 COMMITMENT FROM THE CEO
               </Link>
@@ -111,7 +111,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             <li className="border-b border-gray-500 w-full text-center md:text-left md:border-b-0">
               <Link
                 href="/about-us/bod"
-                className="text-sm text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
+                className="text-sm text-gray-700 p-3  font-normal hover:text-green-500"
               >
                 BOARD OF DIRECTORS
               </Link>
@@ -119,7 +119,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             <li className="border-b border-gray-500 w-full text-center md:text-left md:border-b-0">
               <Link
                 href="/about-us/our-employees"
-                className="text-sm text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
+                className="text-sm text-gray-700 p-3  font-normal hover:text-green-500"
               >
                 EMPLOYEES
               </Link>
@@ -132,7 +132,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
         <span
           className={`flex gap-1 items-center justify-center py-3  text-center md:hover:bg-transparent md:hover:text-green-500 md:bg-transparent  ${
             pathname !== "/about-us"
-              ? "text-gray-500 border-b md:text-black border-gray-600 md:border-0 hover:bg-green-500 hover:text-white"
+              ? "text-gray-700 border-b md:text-black border-gray-600 md:border-0 hover:bg-green-500 hover:text-white"
               : "text-white bg-green-500 hover:bg-green-600 md:text-green-600"
           } md:p-0`}
         >
@@ -154,7 +154,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             <li className="border-b border-gray-500 w-full text-center md:text-left md:border-b-0 ">
               <Link
                 href="/about-us"
-                className="text-sm text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
+                className="text-sm text-gray-700 p-3  font-normal hover:text-green-500"
               >
                 VACANCY NOTICE
               </Link>
@@ -162,7 +162,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             <li className="border-b border-gray-500 w-full text-center md:text-left md:border-b-0">
               <Link
                 href="/about-us"
-                className="text-sm text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
+                className="text-sm text-gray-700 p-3  font-normal hover:text-green-500"
               >
                 SHORTLISTING
                 </Link>
@@ -170,7 +170,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             <li className="border-b border-gray-500 w-full text-center md:text-left md:border-b-0">
               <Link
                 href="/about-us"
-                className="text-sm text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
+                className="text-sm text-gray-700 p-3  font-normal hover:text-green-500"
               >
                 SCREENING
               </Link>
@@ -178,7 +178,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
             <li className="border-b border-gray-500 w-futext-center md:text-left text-center md:border-b-0">
               <Link
                 href="/about-us"
-                className="text-sm text-gray-500 p-3 text-nowrap font-normal hover:text-green-500"
+                className="text-sm text-gray-700 p-3  font-normal hover:text-green-500"
               >
                 SELECTION
               </Link>
@@ -191,7 +191,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
           href="/"
           className={`block py-3  text-center md:hover:bg-transparent md:hover:text-green-500 md:bg-transparent  ${
             pathname !== "/career"
-              ? "text-gray-500 border-b md:text-black border-gray-600 md:border-0  hover:bg-green-500 hover:text-white"
+              ? "text-gray-700 border-b md:text-black border-gray-600 md:border-0  hover:bg-green-500 hover:text-white"
               : "text-white bg-green-500 hover:bg-green-700 md:text-green-600"
           } md:p-0 text-base  font-normal `}
         >
@@ -203,7 +203,7 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
           href="/branch"
           className={`block py-3  text-center md:hover:bg-transparent md:hover:text-green-500 md:bg-transparent  ${
             pathname !== "/career"
-              ? "text-gray-500 border-b md:text-black border-gray-600 md:border-0  hover:bg-green-500 hover:text-white"
+              ? "text-gray-700 border-b md:text-black border-gray-600 md:border-0  hover:bg-green-500 hover:text-white"
               : "text-white bg-green-500 hover:bg-green-700 md:text-green-600"
           } md:p-0 text-base  font-normal`}
         >
@@ -215,9 +215,9 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
           href="/contact"
           className={`block py-3  text-center md:hover:bg-transparent md:hover:text-green-500 md:bg-transparent  ${
             pathname !== "/contact"
-              ? "text-gray-500 border-b md:text-black border-gray-600 md:border-0  hover:bg-green-500 hover:text-white"
+              ? "text-gray-700 border-b md:text-black border-gray-600 md:border-0  hover:bg-green-500 hover:text-white"
               : "text-white bg-green-500 hover:bg-green-700 md:text-green-600"
-          } md:p-0 text-nowrap text-base  font-normal`}
+          } md:p-0  text-base  font-normal`}
         >
           CONTACT US
         </Link>
@@ -240,7 +240,7 @@ function Header() {
         <div className="flex items-center md:hidden">
           <button
             type="button"
-            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden outline-none "
+            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-700 rounded-lg md:hidden outline-none "
             onClick={() => setNavMenu(!navMenu)}
           >
             <svg

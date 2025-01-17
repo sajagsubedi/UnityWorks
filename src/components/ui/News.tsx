@@ -7,7 +7,7 @@ import { NewsItem } from "@/models/News.models";
 
 export default function News() {
   const fetchNews = async () => {
-    const response = await fetch("/api/news?limit=5&pagetype=landing");
+    const response = await fetch("/api/news?limit=3&pagetype=landing");
     return response.json();
   };
 

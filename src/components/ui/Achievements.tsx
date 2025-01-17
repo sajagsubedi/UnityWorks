@@ -15,7 +15,7 @@ export default function Achievements() {
         </div>
         <div className="flex flex-wrap -m-4 text-center">
           <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
-            <div className="border-2 border-gray-200 px-4 py-6 rounded-lg flex flex-col items-center gap-2">
+            <div className="border-2 border-gray-200 px-4 py-6 rounded-lg flex flex-col items-center gap-2 hover:border-gray-300 transition-all">
               <BsGraphUpArrow className="text-7xl text-center text-green-500 font-bold" />
               <h3 className="title-font font-medium text-3xl text-gray-900">
                 5
@@ -24,7 +24,7 @@ export default function Achievements() {
             </div>
           </div>
           <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
-            <div className="border-2 border-gray-200 px-4 py-6 rounded-lg flex flex-col items-center gap-2">
+            <div className="border-2 border-gray-200 px-4 py-6 rounded-lg flex flex-col items-center gap-2  hover:border-gray-300 transition-all">
               <LiaAwardSolid className="text-7xl text-center text-green-500 font-bold" />
 
               <h3 className="title-font font-medium text-3xl text-gray-900">
@@ -34,7 +34,7 @@ export default function Achievements() {
             </div>
           </div>
           <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
-            <div className="border-2 border-gray-200 px-4 py-6 rounded-lg flex flex-col items-center gap-2">
+            <div className="border-2 border-gray-200 px-4 py-6 rounded-lg flex flex-col items-center gap-2  hover:border-gray-300 transition-all">
               <FaUser className="text-7xl text-center text-green-500 font-bold" />
 
               <h3 className="title-font font-medium text-3xl text-gray-900">
@@ -44,7 +44,7 @@ export default function Achievements() {
             </div>
           </div>
           <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
-            <div className="border-2 border-gray-200 px-4 py-6 rounded-lg flex flex-col items-center gap-2">
+            <div className="border-2 border-gray-200 px-4 py-6 rounded-lg flex flex-col items-center gap-2  hover:border-gray-300 transition-all">
               <GiReceiveMoney className="text-7xl text-center text-green-500 font-bold" />
 
               <h3 className="title-font font-medium text-3xl text-gray-900">

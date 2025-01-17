@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { FaChevronRight, FaChevronLeft, FaQuoteRight } from "react-icons/fa";
 import Autoplay from "embla-carousel-autoplay";
@@ -8,6 +8,8 @@ import { testimonials } from "@/constants/Testimonials";
 import Image from "next/image";
 
 export default function Testimonials() {
+  const [changeImage, setChangeImage] = useState(false);
+
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 8000 }),
   ]);
@@ -30,7 +32,11 @@ export default function Testimonials() {
           </h2>
         </div>
 
-        <div className="relative w-[90%] md:w-full mx-auto">
+        <div
+          className="relative w-[90%] md:w-full mx-auto "
+          onMouseEnter={() => setChangeImage(true)}
+          onMouseLeave={() => setChangeImage(false)}
+        >
           <div className="absolute bg-green-500 rounded-full p-4 md:-top-10 -top-7 left-1/2 transform -translate-x-1/2">
             <FaQuoteRight className="w-7 h-7 text-white md:w-12 md:h-12" />
           </div>
@@ -61,19 +67,24 @@ export default function Testimonials() {
               ))}
             </div>
           </div>
-
-          <button
-            onClick={scrollPrev}
-            className=" bg-white rounded-full p-2 shadow-md absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-1/2"
-          >
-            <FaChevronLeft className="w-5 h-5 text-green-500" />
-          </button>
-          <button
-            onClick={scrollNext}
-            className=" bg-white rounded-full p-2 shadow-md absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-1/2"
-          >
-            <FaChevronRight className="w-5 h-5 text-green-500" />
-          </button>
+          <div className="overflow-hidden absolute w-full min-h-6 top-1/2">
+            <button
+              onClick={scrollPrev}
+              className={`p-2 absolute top-1/2 transform -translate-y-1/2 -translate-x-1/2 transition-all ${
+                changeImage ? "left-5" : "-left-5 "
+              }`}
+            >
+              <FaChevronLeft className="w-5 h-5 text-green-500" />
+            </button>
+            <button
+              onClick={scrollNext}
+              className={`p-2 absolute top-1/2 transform -translate-y-1/2 translate-x-1/2 transition-all ${
+                changeImage ? "right-5" : "-right-5"
+              }`}
+            >
+              <FaChevronRight className="w-5 h-5 text-green-500" />
+            </button>
+          </div>
         </div>
       </div>
     </div>

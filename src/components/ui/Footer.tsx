@@ -55,19 +55,29 @@ export default function Footer() {
             <h3 className="font-medium text-lg text-gray-600">Links</h3>
             <ul className="flex flex-col py-2 gap-2 px-4 items-start text-gray-600">
               <li className="list-disc">
-                <Link href="/">Home</Link>
+                <Link href="/" className="hover:text-green-500">
+                  Home
+                </Link>
               </li>
               <li className="list-disc">
-                <Link href="/about">About Us</Link>
+                <Link href="/about" className="hover:text-green-500">
+                  About Us
+                </Link>
               </li>
               <li className="list-disc">
-                <Link href="/services">Services</Link>
+                <Link href="/services" className="hover:text-green-500">
+                  Services
+                </Link>
               </li>
               <li className="list-disc">
-                <Link href="/gallery">Gallery</Link>
+                <Link href="/gallery" className="hover:text-green-500">
+                  Gallery
+                </Link>
               </li>
               <li className="list-disc">
-                <Link href="/contact">Contact Us</Link>
+                <Link href="/contact" className="hover:text-green-500">
+                  Contact Us
+                </Link>
               </li>
             </ul>
           </div>
@@ -75,13 +85,19 @@ export default function Footer() {
             <h3 className="font-medium text-lg text-gray-600">Useful Links</h3>
             <ul className="flex flex-col gap-2 items-start text-gray-600 py-2 px-5 ">
               <li className="list-disc">
-                <a href="/">Forex</a>
+                <a href="/" className="hover:text-green-500">
+                  Forex
+                </a>
               </li>
               <li className="list-disc">
-                <a href="/">Privacy Policy</a>
+                <a href="/" className="hover:text-green-500">
+                  Privacy Policy
+                </a>
               </li>
               <li className="list-disc">
-                <a href="/">Terms and Conditions</a>
+                <a href="/" className="hover:text-green-500">
+                  Terms and Conditions
+                </a>
               </li>
             </ul>
           </div>

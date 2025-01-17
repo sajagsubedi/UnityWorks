@@ -7,7 +7,7 @@ import { NoticeItem } from "@/models/Notice.models";
 
 export default function Notices() {
   const fetchNotices = async () => {
-    const response = await fetch("/api/notices?limit=5&pagetype=landing");
+    const response = await fetch("/api/notices?limit=3&pagetype=landing");
     return response.json();
   };
 

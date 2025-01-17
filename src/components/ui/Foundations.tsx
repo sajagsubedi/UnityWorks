@@ -36,7 +36,7 @@ export default function Foundations() {
       {foundations.map((foundation, i) => {
         return (
           <div
-            className="flex p-3 text-gray-500 shadow rounded bg-white gap-2"
+            className="flex p-3 text-gray-500 shadow rounded bg-white gap-2 hover:shadow-lg"
             key={i}
           >
             <foundation.icon className="h-20 w-20 text-green-500" />

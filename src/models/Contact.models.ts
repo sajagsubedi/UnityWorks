@@ -23,6 +23,10 @@ const ContactSchema: Schema<ContactForm> = new Schema(
       type: String,
       required: true,
     },
+    message: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,

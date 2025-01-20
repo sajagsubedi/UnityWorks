@@ -32,6 +32,10 @@ const NavLinks = ({ closeDropDown }: { closeDropDown: () => void }) => {
       text: "Reports",
       href: "/admin/reports",
     },
+    {
+      text: "Contact Submission",
+      href: "/admin/contact",
+    },
   ];
   return (
     <>

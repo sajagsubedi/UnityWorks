@@ -27,8 +27,6 @@ export const POST = async (request: Request) => {
       subject,
       message,
     });
-
-    console.log(newForm);
     return NextResponse.json(
       { message: "Contact information sent successfully!", success: true },
       { status: 201 }
@@ -66,6 +64,11 @@ export const GET = async (request: Request) => {
     // Fetch total contact count
     const totalContactForms = await ContactModels.countDocuments();
 
+    //count unread messages
+    const unreadMessages = await ContactModels.countDocuments({
+      isRead: false,
+    });
+
     // Fetch contact forms from the database with pagination and sorting by date
     const contactForms = await ContactModels.find({})
       .sort({ createdAt: -1 })
@@ -79,6 +82,7 @@ export const GET = async (request: Request) => {
         page,
         limit,
         contactForms,
+        unreadMessages,
         message: "Contact forms fetched successfully!",
       },
       { status: 200 }

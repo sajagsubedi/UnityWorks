@@ -71,7 +71,6 @@ const Page = () => {
     setIsDeleting(true);
     try {
       const response = await axios.delete(`/api/news/${deleteModal.id}`);
-      console.log(response);
       toast.success(response.data.message);
       fetchNews();
     } catch (err) {

@@ -8,12 +8,14 @@ import axios, { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useGetSession } from "@/hooks/useGetSession";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
   const { session, loading } = useGetSession();
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
 
   if (session?.isAuthenticated && !loading) {
     router.push("/admin/dashboard");
@@ -21,12 +23,14 @@ function Login() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoggingIn(true);
     try {
       const response = await axios.post("/api/signin", {
         email,
         password,
       });
       toast.success(response.data.message);
+      setIsLoggingIn(false);
       setEmail("");
       setPassword("");
       router.push("/admin/dashboard");
@@ -95,8 +99,13 @@ function Login() {
           </div>
           <button
             type="submit"
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors"
+            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors disabled:bg-green-400 gap-2" disabled={isLoggingIn}
           >
+            <AiOutlineLoading3Quarters
+              className={`animate-spin text-xl ${
+                isLoggingIn ? "visible" : "invisible"
+              }`}
+            />
             Sign in
           </button>
         </form>

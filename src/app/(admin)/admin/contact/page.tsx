@@ -41,7 +41,13 @@ export default function Dashboard() {
     }
   };
 
-  const markAsRead = async (id: string) => {
+  const markAsRead = async (submission: ContactForm) => {
+    const { _id: id, isRead } = submission;
+
+    if (isRead) {
+      return;
+    }
+    
     try {
       setSubmissions((prevValue) => {
         return prevValue.map((subm) =>
@@ -267,7 +273,7 @@ export default function Dashboard() {
                       <div className="flex space-x-3">
                         <button
                           onClick={() => {
-                            markAsRead(submission._id as string);
+                            markAsRead(submission);
                             setSelectedSubmission(submission);
                           }}
                           className="text-green-600 hover:text-green-900"

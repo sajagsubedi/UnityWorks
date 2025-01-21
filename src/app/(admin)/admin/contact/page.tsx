@@ -117,6 +117,7 @@ export default function Dashboard() {
           (subm) => subm._id !== deleteModal.id
         ) as ContactForm[];
       });
+      setTotalMessages((p) => p - 1);
     } catch (err) {
       const error = err as AxiosError;
       toast.error(error.message);

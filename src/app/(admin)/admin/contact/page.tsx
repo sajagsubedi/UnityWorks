@@ -6,9 +6,12 @@ import { FaTrash } from "react-icons/fa";
 import { FiMessageCircle } from "react-icons/fi";
 import { FaEye } from "react-icons/fa";
 import { ContactForm } from "@/models/Contact.models";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { RiLoader2Fill } from "react-icons/ri";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { DeleteModalState } from "@/types/ComponentTypes";
+import { toast } from "react-toastify";
+import { DeleteModal } from "@/components";
 
 export default function Dashboard() {
   const [submissions, setSubmissions] = useState<ContactForm[]>([]);
@@ -18,9 +21,10 @@ export default function Dashboard() {
   const [unreadMessages, setUnreadMessages] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
-  const deleteSubmission = (id: string) => {
-    console.log(id);
-  };
+  const [deleteModal, setDeleteModal] = useState<DeleteModalState>({
+    isOpen: false,
+  });
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const markAllRead = async () => {
     try {
@@ -74,7 +78,7 @@ export default function Dashboard() {
       setTotalMessages(response.data.totalContactForms);
       setUnreadMessages(response.data.unreadMessages);
     } catch (error) {
-      console.error("Error fetching news:", error);
+      console.error("Error fetching contact messages:", error);
     } finally {
       setLoading(false);
     }
@@ -91,7 +95,34 @@ export default function Dashboard() {
       setSubmissions([...submissions, ...response.data.contactForms]);
       setPage((p) => p + 1);
     } catch (error) {
-      console.error("Error fetching news:", error);
+      console.error("Error fetching contact messages:", error);
+    }
+  };
+
+  //function for handling delete modal
+  const openDeleteModal = (id: string) => {
+    setDeleteModal({ isOpen: true, id });
+  };
+  const closeDeleteModal = () => {
+    setDeleteModal({ isOpen: false });
+  };
+
+  const handleDeleteMessage = async () => {
+    setIsDeleting(true);
+    try {
+      const response = await axios.delete(`/api/contact/${deleteModal.id}`);
+      toast.success(response.data.message);
+      setSubmissions((prevValue) => {
+        return prevValue.filter(
+          (subm) => subm._id !== deleteModal.id
+        ) as ContactForm[];
+      });
+    } catch (err) {
+      const error = err as AxiosError;
+      toast.error(error.message);
+    } finally {
+      closeDeleteModal();
+      setIsDeleting(false);
     }
   };
 
@@ -110,6 +141,14 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {deleteModal.isOpen && deleteModal.id && (
+        <DeleteModal
+          onCancel={closeDeleteModal}
+          onConfirm={handleDeleteMessage}
+          message="contact message"
+          isDeleting={isDeleting}
+        />
+      )}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex items-center justify-between mb-8">
           <div>
@@ -236,7 +275,7 @@ export default function Dashboard() {
                         </button>
                         <button
                           onClick={() =>
-                            deleteSubmission(submission._id as string)
+                            openDeleteModal(submission._id as string)
                           }
                           className="text-red-600 hover:text-red-900"
                         >

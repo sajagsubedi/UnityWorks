@@ -21,7 +21,40 @@ export default function Dashboard() {
   const deleteSubmission = (id: string) => {
     console.log(id);
   };
-  const handleRead = () => {};
+
+  const markAllRead = async () => {
+    try {
+      setSubmissions((prevValue) => {
+        return prevValue.map((subm) => ({
+          ...subm,
+          isRead: true,
+        })) as ContactForm[];
+      });
+      await axios.patch(`/api/contact/`);
+      setUnreadMessages(0);
+    } catch (error) {
+      console.error("Failed to mark all as read", error);
+    }
+  };
+
+  const markAsRead = async (id: string) => {
+    try {
+      setSubmissions((prevValue) => {
+        return prevValue.map((subm) =>
+          subm._id === id
+            ? {
+                ...subm,
+                isRead: true,
+              }
+            : subm
+        ) as ContactForm[];
+      });
+      await axios.patch(`/api/contact/${id}`);
+      setUnreadMessages((p) => p - 1);
+    } catch (error) {
+      console.error("Failed to mark as read", error);
+    }
+  };
 
   const formatDate = (dateString: Date) => {
     return new Date(dateString).toLocaleDateString("en-US", {
@@ -35,7 +68,7 @@ export default function Dashboard() {
 
   const fetchForms = async () => {
     try {
-      const response = await axios.get("/api/contact?page=1&limit=3");
+      const response = await axios.get("/api/contact?page=1&limit=5");
       setPage(1);
       setSubmissions(response.data.contactForms);
       setTotalMessages(response.data.totalContactForms);
@@ -54,7 +87,7 @@ export default function Dashboard() {
 
   const fetchMoreForms = async () => {
     try {
-      const response = await axios.get(`/api/contact?page=${page + 1}&limit=3`);
+      const response = await axios.get(`/api/contact?page=${page + 1}&limit=5`);
       setSubmissions([...submissions, ...response.data.contactForms]);
       setPage((p) => p + 1);
     } catch (error) {
@@ -117,7 +150,7 @@ export default function Dashboard() {
           <div className="w-full flex justify-end px-2 py-1">
             <button
               className="text-sm text-green-500 underline"
-              onClick={handleRead}
+              onClick={markAllRead}
             >
               Mark all as read
             </button>
@@ -193,7 +226,10 @@ export default function Dashboard() {
                     <td className="px-6 py-4 text-sm font-medium">
                       <div className="flex space-x-3">
                         <button
-                          onClick={() => setSelectedSubmission(submission)}
+                          onClick={() => {
+                            markAsRead(submission._id as string);
+                            setSelectedSubmission(submission);
+                          }}
                           className="text-green-600 hover:text-green-900"
                         >
                           <FaEye className="w-5 h-5" />

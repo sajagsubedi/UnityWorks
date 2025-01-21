@@ -96,3 +96,34 @@ export const GET = async (request: Request) => {
     );
   }
 };
+
+//Route 3:to set all contact forms as read
+export const PATCH = async () => {
+  await connectDb();
+  try {
+    //checking auth
+    const auth = await checkAuth();
+    if (!auth || !auth.isAuthenticated) {
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
+    await ContactModels.updateMany({}, { isRead: true }, { new: true });
+
+    return NextResponse.json(
+      {
+        success: true,
+        message: "All contact submission marked as read!",
+      },
+      { status: 200 }
+    );
+  } catch (err) {
+    console.error("Error updating contact forms:", err);
+    return NextResponse.json(
+      { success: false, message: "Something went wrong. Please try again." },
+      { status: 500 }
+    );
+  }
+};

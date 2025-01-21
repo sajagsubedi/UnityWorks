@@ -7,6 +7,8 @@ import { FiMessageCircle } from "react-icons/fi";
 import { FaEye } from "react-icons/fa";
 import { ContactForm } from "@/models/Contact.models";
 import axios from "axios";
+import { RiLoader2Fill } from "react-icons/ri";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function Dashboard() {
   const [submissions, setSubmissions] = useState<ContactForm[]>([]);
@@ -15,7 +17,7 @@ export default function Dashboard() {
   const [totalMessages, setTotalMessages] = useState(0);
   const [unreadMessages, setUnreadMessages] = useState(0);
   const [page, setPage] = useState(1);
-
+  const [loading, setLoading] = useState(true);
   const deleteSubmission = (id: string) => {
     console.log(id);
   };
@@ -33,29 +35,45 @@ export default function Dashboard() {
 
   const fetchForms = async () => {
     try {
-      const response = await axios.get("/api/contact?page=1");
+      const response = await axios.get("/api/contact?page=1&limit=3");
       setPage(1);
       setSubmissions(response.data.contactForms);
       setTotalMessages(response.data.totalContactForms);
       setUnreadMessages(response.data.unreadMessages);
     } catch (error) {
       console.error("Error fetching news:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
+    setLoading(true);
     fetchForms();
   }, []);
 
   const fetchMoreForms = async () => {
     try {
-      const response = await axios.get(`/api/contact?page=${page + 1}`);
+      const response = await axios.get(`/api/contact?page=${page + 1}&limit=3`);
       setSubmissions([...submissions, ...response.data.contactForms]);
       setPage((p) => p + 1);
     } catch (error) {
       console.error("Error fetching news:", error);
     }
   };
+
+  if (loading) {
+    return (
+      <section className="h-full w-full bg-white flex justify-center items-center py-[10vw]">
+        <div className="w-8 h-8 animate-spin relative">
+          <span className="w-3 h-3 bg-green-500 rounded-full top-0 left-0 absolute"></span>
+          <span className="w-3 h-3 bg-green-500 rounded-full top-0 right-0 absolute"></span>
+          <span className="w-3 h-3 bg-green-500 rounded-full bottom-0 left-0 absolute"></span>
+          <span className="w-3 h-3 bg-green-500 rounded-full bottom-0 right-0 absolute"></span>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -105,7 +123,7 @@ export default function Dashboard() {
             </button>
           </div>
 
-          <div className="overflow-x-auto">
+          <div className="overflow-hidden">
             <table className="w-full">
               <thead className="bg-gray-50">
                 <tr>
@@ -192,6 +210,21 @@ export default function Dashboard() {
                     </td>
                   </tr>
                 ))}
+                <tr>
+                  <td colSpan={5} className="text-center">
+                    <InfiniteScroll
+                      className="overflow-hidden w-full"
+                      dataLength={submissions.length}
+                      next={fetchMoreForms}
+                      hasMore={submissions.length !== totalMessages}
+                      loader={
+                        <RiLoader2Fill className="animate-spin text-xl w-full flex justify-center" />
+                      }
+                    >
+                      <div className="hidden">End</div>
+                    </InfiniteScroll>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>

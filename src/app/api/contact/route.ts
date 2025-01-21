@@ -21,7 +21,7 @@ export const POST = async (request: Request) => {
       );
     }
 
-    const newForm = await ContactModels.create({
+    await ContactModels.create({
       name,
       email,
       subject,
@@ -31,7 +31,8 @@ export const POST = async (request: Request) => {
       { message: "Contact information sent successfully!", success: true },
       { status: 201 }
     );
-  } catch (error) {
+  } catch (err) {
+    console.error("Error fetching contact forms:", err);
     return NextResponse.json(
       {
         success: false,
